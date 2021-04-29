@@ -38,7 +38,7 @@
 		title = #{title},
 		content = #{content},
 		writer = #{writer}
-		where bno =#{bno}
+		where bno = #{bno}
 	</update>
 
 	<!-- 게시물 삭제 -->
