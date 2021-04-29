@@ -7,6 +7,9 @@
 <title>게시물 작성</title>
 </head>
 <body>
+	<div id="nav">
+	 <%@ include file="../include/nav.jsp" %>
+	</div>
 <form method="post">
 
 <!-- input 과 textarea의 이름 속성의 값이 BoardVO와 일치해야한다. -->
