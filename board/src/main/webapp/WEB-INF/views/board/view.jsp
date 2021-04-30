@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="<c:url value="/resources/static/common.css"/>" rel='stylesheet' />
 <title>게시물 조회</title>
 </head>
 <body>

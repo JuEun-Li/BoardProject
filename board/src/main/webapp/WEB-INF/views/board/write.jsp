@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="<c:url value="/resources/static/common.css"/>" rel='stylesheet' />
 <title>게시물 작성</title>
 </head>
 <body>
@@ -23,7 +24,7 @@
 	<label>내용</label>
 	<textarea cols="50" rows="5" name="content"></textarea><br />
 	
-	<button type="submit">작성</button>
+	<button type="submit" class="btn">작성</button>
 
 </form>
 </body>
