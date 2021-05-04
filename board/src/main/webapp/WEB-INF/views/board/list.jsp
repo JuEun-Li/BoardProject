@@ -52,7 +52,7 @@
 <body class="container">
 	<h1>게시판</h1>
 	
-	<table class="table table-hover col-lg-12 col-md-10">
+	<table class="table table-hover col-lg-12 col-md-9">
 		<thead>
 			<tr>
 				<th>번호</th>

@@ -22,9 +22,13 @@
  a:hover {text-decoration: underline;}
  
 </style>
+
 <ul> 
  <li>
-  <button type="button" class="rounded bg-warning"><a href="/board/list">글 목록</a></button> 
+ 	<a href="/board/listPage?num=1">글 목록(페이징)</a> 
+</li>
+ <li>
+  	<button type="button" class="rounded bg-warning"><a href="/board/list">글 목록</a></button> 
  </li>
  
  <li>
