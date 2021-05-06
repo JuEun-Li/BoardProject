@@ -75,7 +75,8 @@
 						<fmt:formatDate value="${list.regDate}" pattern="yyyy-MM-dd" />
 					</td>
 					<td>${list.writer}</td>
-					<td>${list.viewCnt}</td>
+				<%-- 	<td>${list.viewCnt}</td> --%>
+					<td><c:out value="${list.viewCnt}" /></td>
 				</tr>
 			</c:forEach>
 		</tbody>

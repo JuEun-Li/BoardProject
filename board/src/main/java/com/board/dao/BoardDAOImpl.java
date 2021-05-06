@@ -91,5 +91,11 @@ public class BoardDAOImpl implements BoardDAO {
 
 		 return sql.selectOne(namespace + ".searchCount", data);
 	}
+	// 게시판 조회수
+	@Override
+	public void boardHit(int bno) throws Exception {
+		// TODO Auto-generated method stub
+		sql.update(namespace + ".boardHit", bno);
+	}
 
 }
