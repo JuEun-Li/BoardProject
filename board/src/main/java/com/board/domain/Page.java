@@ -1,5 +1,7 @@
 package com.board.domain;
 
+// 페이징 처리 부분만 따로 빼놓은 클래스
+
 public class Page {
 	// 현재 페이지 번호
 	private int num;
@@ -74,26 +76,43 @@ public class Page {
 	public boolean getNext() {
 		return next;
 	}
+
 	// 데이터들을 계산하는 메소드
 	private void dataCalc() {
 
-		 // 마지막 번호
-		 endPageNum = (int)(Math.ceil((double)num / (double)pageNumCnt) * pageNumCnt);
+		// 마지막 번호
+		endPageNum = (int) (Math.ceil((double) num / (double) pageNumCnt) * pageNumCnt);
 
-		 // 시작 번호
-		 startPageNum = endPageNum - (pageNumCnt - 1);
+		// 시작 번호
+		startPageNum = endPageNum - (pageNumCnt - 1);
 
-		 // 마지막 번호 재계산
-		 int endPageNum_tmp = (int)(Math.ceil((double)count / (double)pageNumCnt));
+		// 마지막 번호 재계산
+		int endPageNum_tmp = (int) (Math.ceil((double) count / (double) pageNumCnt));
 
-		 if(endPageNum > endPageNum_tmp) {
-		  endPageNum = endPageNum_tmp;
-		 }
-
-		 prev = startPageNum == 1 ? false : true;
-		 next = endPageNum * pageNumCnt >= count ? false : true;
-
-		 displayPost = (num - 1) * postNum;
-
+		if (endPageNum > endPageNum_tmp) {
+			endPageNum = endPageNum_tmp;
 		}
+
+		prev = startPageNum == 1 ? false : true;
+		next = endPageNum * pageNumCnt >= count ? false : true;
+
+		displayPost = (num - 1) * postNum;
+
+	}
+
+	// 검색 타입과 검색어 유지
+	private String searchTypeKeyword;
+
+	public void setSearchTypeKeyword(String searchType, String keyword) {
+
+		if (searchType.equals("") || keyword.equals("")) {
+			searchTypeKeyword = "";
+		} else {
+			searchTypeKeyword = "&searchType=" + searchType + "&keyword=" + keyword;
+		}
+	}
+
+	public String getSearchTypeKeyword() {
+		return searchTypeKeyword;
+	}
 }

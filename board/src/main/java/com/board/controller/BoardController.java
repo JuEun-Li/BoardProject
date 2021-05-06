@@ -106,7 +106,11 @@ public class BoardController {
 		Page page = new Page();
 
 		page.setNum(num);
-		page.setCount(service.count());
+//		page.setCount(service.count());
+		page.setCount(service.searchCount(searchType, keyword));
+
+		// 검색 타입과 검색어
+		page.setSearchTypeKeyword(searchType, keyword);
 
 		List<BoardVO> list = null;
 		// list = service.listPage(page.getDisplayPost(), page.getPostNum());
@@ -115,5 +119,8 @@ public class BoardController {
 		model.addAttribute("list", list);
 		model.addAttribute("page", page);
 		model.addAttribute("select", num);
+
+		model.addAttribute("searchType", searchType);
+		model.addAttribute("keyword", keyword);
 	}
 }
