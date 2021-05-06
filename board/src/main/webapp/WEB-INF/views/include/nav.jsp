@@ -7,12 +7,12 @@ li {
 	float: right;
 }
 
-button {
+/* button {
 	border: none;
 	background-color: lightblue;
 	color: white;
 	margin-top: 10%;
-}
+} */
 
 button a {
 	display: block;

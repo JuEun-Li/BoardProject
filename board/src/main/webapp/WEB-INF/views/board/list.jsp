@@ -25,6 +25,7 @@
  	}
  	
 	table th { padding: 10px; border: 1px solid aliceblue; background-color: aliceblue; color: gray }
+	
 	h1 {
 		padding-top: 50px;
 		text-align: center;
@@ -83,9 +84,10 @@
 
 	</table>
 	
-	<div id="nav">
+	<%-- <div id="nav">
 		<%@ include file="../include/nav.jsp"%>
-	</div>
+	</div> --%>
+
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

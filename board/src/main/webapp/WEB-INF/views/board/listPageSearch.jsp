@@ -39,6 +39,10 @@ table th {
 	background-color: aliceblue;
 	color: gray
 }
+li {
+	list-style: none;
+	float: right;
+}
 
 h1 {
 	padding-top: 50px;
@@ -148,11 +152,22 @@ button {
 		 <button type="button" id="searchBtn">검색</button>
 		</div>
 		
+		<li>
+			<button type="button" class="button rounded">
+				<a href="/board/write">글 작성</a>
+			</button>
+		</li>
+		<li>
+			<button type="button" class="rounded">
+				<a href="/board/list">글 목록</a>
+			</button>
+		</li>
+		
 	</div>
 	
-	<div id="nav">
+	<%-- <div id="nav">
 		<%@ include file="../include/nav.jsp"%>
-	</div>
+	</div> --%>
 	
 <script>
 
