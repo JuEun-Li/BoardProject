@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
-<style>
+<style scoped>
 	table {
 		margin-left: auto; margin-right: auto;
 		border-collapse: collapse; 

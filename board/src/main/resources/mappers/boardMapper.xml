@@ -63,4 +63,36 @@
 		order by bno desc
 		limit #{displayPost}, #{postNum}
 	</select>
+	
+	<!-- 게시물 목록 + 페이징 + 검색 -->
+	<select id="listPageSearch" parameterType="hashMap"
+		resultType="com.board.domain.BoardVO">
+		select
+		bno, title, writer, regDate, viewCnt
+		from board.tbl_board
+		
+		<!-- 제목 검색 쿼리 -->
+		<if test='searchType.equals("title")'>
+		where title like concat('%', #{keyword}, '%')
+		</if>
+		
+		<!-- 내용 검색 -->
+		<if test='searchType.equals("content")'>
+		where content like concat('%', #{keyword}, '%')
+		</if>
+		
+		<!-- 문자열 합치기(제목 + 내용)  -->
+		<if test='searchType.equals("title_content")'>
+		where title like concat('%', #{keyword}, '%')
+			or content like concat('%', #{keyword}, '%')
+		</if>
+		
+		<!-- 작성자 검색 쿼리 -->	
+		<if test='searchType.equals("writer")'>
+		where writer like concat('%', #{keyword}, '%')
+		</if>
+		
+		order by bno desc
+		limit #{displayPost}, #{postNum}
+	</select>
 </mapper>

@@ -107,7 +107,7 @@ button {
 
 	<div>
 		<c:if test="${page.prev}">
-			<span>[ <a href="/board/listPage?num=${page.startPageNum - 1}">이전</a> ]
+			<span>[ <a href="/board/listPageSearch?num=${page.startPageNum - 1}">이전</a> ]
 			</span>
 		</c:if>
 
@@ -115,7 +115,7 @@ button {
 			 <span>
 				<!-- 만약 select의 값이 num과 다를 경우 링크 그대로 출력 -->
 				  <c:if test="${select != num}">
-				   <a href="/board/listPage?num=${num}">${num}</a>
+				   <a href="/board/listPageSearch?num=${num}">${num}</a>
 				  </c:if>    
 				  
 				  <!-- 만약 select의 값이 num과 같을 경우 굵은 글자로 출력 -->
@@ -127,7 +127,7 @@ button {
 		</c:forEach>
 
 		<c:if test="${page.next}">
-			<span>[ <a href="/board/listPage?num=${page.endPageNum + 1}">다음</a> ]
+			<span>[ <a href="/board/listPageSearch?num=${page.endPageNum + 1}">다음</a> ]
 			</span>
 		</c:if>
 
@@ -135,12 +135,40 @@ button {
 			<span> <a href="/board/listPage?num=${num}">${num}</a>
 			</span>
 		</c:forEach> --%>
+		
+		<div>
+		  <select name="searchType">
+		      <option value="title">제목</option>
+		      <option value="content">내용</option>
+		      <option value="title_content">제목+내용</option>
+		      <option value="writer">작성자</option>
+		  </select>
+		  
+		  <input type="text" name="keyword" />
+		  
+		  <button type="button" id="searchBtn">검색</button>
+		 </div>
+		
 	</div>
 	
 	<div id="nav">
 		<%@ include file="../include/nav.jsp"%>
 	</div>
+	
+<script>
+
+ 	document.getElementById("searchBtn").onclick = function () {
+   
+	  	let searchType = document.getElementsByName("searchType")[0].value;
+	  	let keyword =  document.getElementsByName("keyword")[0].value;
+	  
+	  	/* 해당 url로 이동하는 기능 */
+	  	location.href = "/board/listPageSearch?num=1" + "&searchType=" + searchType + "&keyword=" + keyword;
+ 	};
+</script>
 </body>
+
+
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
 	crossorigin="anonymous"></script>

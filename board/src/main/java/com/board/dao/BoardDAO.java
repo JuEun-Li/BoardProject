@@ -9,10 +9,10 @@ public interface BoardDAO {
 	// 게시물 목록
 	public List<BoardVO> list() throws Exception;
 
-	 //게시물 작성
+	// 게시물 작성
 	public void write(BoardVO vo) throws Exception;
 
-	//게시물 조회
+	// 게시물 조회
 	public BoardVO view(int bno) throws Exception;
 
 	// 게시물 수정
@@ -26,4 +26,8 @@ public interface BoardDAO {
 
 	// 게시물 목록 + 페이징
 	public List<BoardVO> listPage(int displayPost, int postNum) throws Exception;
+
+	// 게시물 목록 + 페이징 + 검색
+	public List<BoardVO> listPageSearch(int displayPost, int postNum, String searchType, String keyword)
+			throws Exception;
 }

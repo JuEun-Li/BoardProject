@@ -50,15 +50,17 @@ public class BoardServiceImpl implements BoardService {
 	public int count() throws Exception {
 		return dao.count();
 	}
+
 	// 게시물 목록 + 페이징
 	@Override
 	public List<BoardVO> listPage(int displayPost, int postNum) throws Exception {
 		return dao.listPage(displayPost, postNum);
 	}
 
-	// 게시물 목록 + 페이징
-//	@Override
-//	public List listPage(int displayPost, int postNum) throws Exception {
-//	 return dao.listPage(displayPost, postNum);
-//	}
+	// 게시물 목록 + 페이징 + 검색
+	@Override
+	public List<BoardVO> listPageSearch(int displayPost, int postNum, String searchType, String keyword)
+			throws Exception {
+		return dao.listPageSearch(displayPost, postNum, searchType, keyword);
+	}
 }
