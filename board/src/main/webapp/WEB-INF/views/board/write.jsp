@@ -4,8 +4,13 @@
 <html>
 <style scoped>
 	.write-box {
-		border: 1px solid gray;
+		text-align: center;
 	}
+	li {
+		list-style: none;
+		float: right;
+	}
+
 </style>
 <head>
 <meta charset="UTF-8">
@@ -14,9 +19,9 @@
 <title>게시물 작성</title>
 </head>
 <body>
-	<div id="nav">
+	<%-- <div id="nav">
 	 <%@ include file="../include/nav.jsp" %>
-	</div>
+	</div> --%>
 	
 <form method="post">
 <!-- input 과 textarea의 이름 속성의 값이 BoardVO와 일치해야한다. -->
@@ -28,11 +33,16 @@
 		<input type="text" name="writer" /><br />
 		
 		<label>내용</label>
-		<textarea cols="50" rows="5" name="content"></textarea><br />
+		<textarea cols="100" rows="10" name="content"></textarea><br />
 		
-		<button type="submit" class="btn">작성</button>
+		<button type="submit" class="button rounded bg-warming">작성</button>
 	</div>
 </form>
+	<li>
+		<button type="button" class="button rounded">
+			<a href="/board/listPageSearch?num=1">글 목록(페이징 + 검색)</a>
+		</button>
+	</li>
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

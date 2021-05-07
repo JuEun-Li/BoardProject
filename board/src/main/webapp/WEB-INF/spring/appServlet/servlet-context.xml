@@ -23,6 +23,27 @@
 	
 	<context:component-scan base-package="com.board.controller" />
 	
+	<!-- 다국어 처리 관련 -->
+	<beans:bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+	     <beans:property name="basenames" value="messages/message"/>	         
+	 </beans:bean>    
+
+	 <beans:bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<beans:property name="defaultLocale" value="ko" />
+	</beans:bean>
+	
+	<context:component-scan
+		base-package="com.board.controller" />
+
+	<interceptors>
+		<beans:bean id="localeChangeInterceptor"
+			class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<beans:property name="paramName" value="lang" />
+		</beans:bean>
+	</interceptors>
+	<!-- 다국어 처리 관련 끝 -->
+	
 	
 	
 </beans:beans>

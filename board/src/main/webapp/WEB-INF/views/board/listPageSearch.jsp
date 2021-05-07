@@ -3,6 +3,7 @@
 	pageEncoding="UTF-8"%>
 <!-- 날짜 포멧 추가 -->
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html>
 <style scoped>
@@ -21,14 +22,16 @@ button:active {
 	transform: translateY(2px);
 	background: #ccc;
 }
+button {
+	border: none;
+	padding: 10px;
+}
 
 table td {
 	padding: 15px;
 	/* border: 1px solid lightgray; */
 }
-/* td:nth-child(2):hover {
- 		background-color: lightblue;
- 	} */
+
 th:nth-child(2) {
 	width: 40%;
 }
@@ -65,9 +68,6 @@ a:hover {
 	text-decoration: underline;
 }
 
-button {
-	color: white;
-}
 </style>
 
 <head>
@@ -82,19 +82,35 @@ button {
 <title>게시물 목록</title>
 </head>
 <body class="container">
-	<h1>게시판</h1>
+		<!-- 언어 선택 영역 -->
+		<div class="col-lg-2 col-md-3" style="float: right;">
+		<select class="form-control id="testBox">
+			<option>언어 선택</option>
+			<option value="ko">한국어</option>
+			<option value="zh">중국어</option>
+		</select>
+		</div>
+		
+	<!-- 게시판 -->
+	<h1><spring:message code="msg.board" text="default text" /></h1>
 
 	<table class="table table-hover col-lg-12 col-md-9">
 		<thead>
 			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>작성일</th>
-				<th>작성자</th>
-				<th>조회수</th>
+				<!-- 번호 -->
+				<th><spring:message code="msg.num" text="default text" /></th>
+				<!-- 제목 -->
+				<th><spring:message code="msg.title" text="default text" /></th>
+				<!-- 작성일 -->
+				<th><spring:message code="msg.date" text="default text" /></th>
+				<!-- 작성자 -->
+				<th><spring:message code="msg.writer" text="default text" /></th>
+				<!-- 조회수 -->
+				<th><spring:message code="msg.count" text="default text" /></th>
 			</tr>
 		</thead>
-
+		
+		<!-- 리스트 출력 영역 -->
 		<tbody>
 			<c:forEach items="${list}" var="list">
 				<tr>
@@ -110,33 +126,32 @@ button {
 	</table>
 
 	<div>
-		<c:if test="${page.prev}">
-			<span>[ <a href="/board/listPageSearch?num=${page.startPageNum - 1}${page.searchTypeKeyword}">이전</a> ]</span>
-		</c:if>
-
-		<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
-			 <span>
-				<!-- 만약 select의 값이 num과 다를 경우 링크 그대로 출력 -->
-				  <c:if test="${select != num}">
-				   <a href="/board/listPageSearch?num=${num}${page.searchTypeKeyword}">${num}</a>
-				  </c:if>    
-				  
-				  <!-- 만약 select의 값이 num과 같을 경우 굵은 글자로 출력 -->
-				  <c:if test="${select == num}">
-				   <b>${num}</b>
-				  </c:if>
-				    
-			 </span>
-		</c:forEach>
-
-		<c:if test="${page.next}">
-			 <span>[ <a href="/board/listPageSearch?num=${page.endPageNum + 1}${page.searchTypeKeyword}">다음</a> ]</span>
-		</c:if>
-
-	<%-- 	<c:forEach begin="1" end="${pageNum}" var="num">
-			<span> <a href="/board/listPage?num=${num}">${num}</a>
-			</span>
-		</c:forEach> --%>
+		<!-- 페이징 영역 -->
+		<div style="text-align: center; font-size: 1.5vw; color: skyblue;">
+			<c:if test="${page.prev}">
+				<span>[ <a href="/board/listPageSearch?num=${page.startPageNum - 1}${page.searchTypeKeyword}">이전</a> ]</span>
+			</c:if>
+	
+			<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
+				 <span>
+					<!-- 만약 select의 값이 num과 다를 경우 링크 그대로 출력 -->
+					  <c:if test="${select != num}">
+					   <a href="/board/listPageSearch?num=${num}${page.searchTypeKeyword}">${num}</a>
+					  </c:if>    
+					  
+					  <!-- 만약 select의 값이 num과 같을 경우 굵은 글자로 출력 -->
+					  <c:if test="${select == num}">
+					   <b>${num}</b>
+					  </c:if>
+					    
+				 </span>
+			</c:forEach>
+	
+			<c:if test="${page.next}">
+				 <span>[ <a href="/board/listPageSearch?num=${page.endPageNum + 1}${page.searchTypeKeyword}">다음</a> ]</span>
+			</c:if>
+		</div>
+		<!-- 페이징 영역 끝 -->
 		
 		<div>
 		 <select name="searchType">
@@ -153,13 +168,13 @@ button {
 		</div>
 		
 		<li>
-			<button type="button" class="button rounded">
+			<button type="button" class="button rounded bg-warming">
 				<a href="/board/write">글 작성</a>
 			</button>
 		</li>
 		<li>
-			<button type="button" class="rounded">
-				<a href="/board/list">글 목록</a>
+			<button type="button" class="button rounded bg-info">
+				<a href="/board/listPageSearch?num=1">글 목록</a>
 			</button>
 		</li>
 		
@@ -168,6 +183,8 @@ button {
 	<%-- <div id="nav">
 		<%@ include file="../include/nav.jsp"%>
 	</div> --%>
+	
+</div>
 	
 <script>
 
@@ -179,6 +196,19 @@ button {
 	  	/* 해당 url로 이동하는 기능 */
 	  	location.href = "/board/listPageSearch?num=1" + "&searchType=" + searchType + "&keyword=" + keyword;
  	};
+ 	
+ 	/* 번역 링크 구간 */
+ 	$(document).ready(function(){
+		
+		$('#testBox').on('change', function(){
+			var lan = $('#testBox').val();
+			
+			location.href='<c:url value="?lang='+lan+'"/>';
+			
+		/* 	location.href='<c:url value="index.do?lang='+lan+'"/>'; */	
+		});	
+	});
+ 	
 </script>
 </body>
 

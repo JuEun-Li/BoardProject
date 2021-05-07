@@ -17,12 +17,14 @@
 <meta charset="UTF-8">
 <link href="<c:url value="/resources/static/common.css"/>" rel='stylesheet' />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
 <title>게시물 조회</title>
 </head>
 <body>
-	<div id="nav">
+	<%-- <div id="nav">
 	 <%@ include file="../include/nav.jsp" %>
-	</div><br />
+	</div><br /> --%>
+	
 	<h1> 게시물 상세 </h1><hr/>
 	
 	
@@ -42,6 +44,12 @@
 		<a href="/board/modify?bno=${view.bno}">게시물 수정</a>
 		<a href="/board/delete?bno=${view.bno}">게시물 삭제</a>
 	</div>
+	
+	<li>
+		<button type="button" class="button rounded">
+			<a href="/board/listPageSearch?num=1">글 목록(페이징 + 검색)</a>
+		</button>
+	</li>
 
 </form>
 </body>
