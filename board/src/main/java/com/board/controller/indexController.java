@@ -24,8 +24,11 @@ public class indexController {
 	private MessageSource messageSource; //message-context.xml 에 선언되어있는 bean id 값
 
 
-	@RequestMapping(value="/index.do", method=RequestMethod.GET)
+	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String index(Locale locale, HttpServletRequest request, Model model){
+		logger.info("Welcome i18n! The client locale is {}.", locale);
+
+
 		model.addAttribute("siteCount", messageSource.getMessage("msg.test",null, locale));
 		return "index";
 	}

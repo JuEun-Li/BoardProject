@@ -76,37 +76,43 @@ a:hover {
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous">
+
+<!-- jquery 관련 태그들 -->	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <!-- <link rel="stylesheet" type="text/css" href="/common.css" /> -->
 <%-- <link href="<c:url value="/resources/static/common.css"/>" rel='stylesheet' /> --%>
 
 <title>게시물 목록</title>
 </head>
 <body class="container">
+
 		<!-- 언어 선택 영역 -->
-		<div class="col-lg-2 col-md-3" style="float: right;">
-		<select class="form-control id="testBox">
-			<option>언어 선택</option>
-			<option value="ko">한국어</option>
-			<option value="zh">중국어</option>
-		</select>
-		</div>
+	<div class="col-lg-2 col-md-3" style="float: right;">
+	<select class="form-control" id="testBox">
+		<option>언어 선택</option>
+		<option value="ko" selected>한국어</option>
+		<option value="zh">중국어</option>
+	</select>
+	</div>
 		
 	<!-- 게시판 -->
-	<h1><spring:message code="msg.board" text="default text" /></h1>
+	<h1><spring:message code="msg.board" /></h1>
 
 	<table class="table table-hover col-lg-12 col-md-9">
 		<thead>
 			<tr>
 				<!-- 번호 -->
-				<th><spring:message code="msg.num" text="default text" /></th>
+				<th><spring:message code="msg.num" /></th>
 				<!-- 제목 -->
-				<th><spring:message code="msg.title" text="default text" /></th>
+				<th><spring:message code="msg.title" /></th>
 				<!-- 작성일 -->
-				<th><spring:message code="msg.date" text="default text" /></th>
+				<th><spring:message code="msg.date" /></th>
 				<!-- 작성자 -->
-				<th><spring:message code="msg.writer" text="default text" /></th>
+				<th><spring:message code="msg.writer" /></th>
 				<!-- 조회수 -->
-				<th><spring:message code="msg.count" text="default text" /></th>
+				<th><spring:message code="msg.count" /></th>
 			</tr>
 		</thead>
 		
@@ -203,19 +209,21 @@ a:hover {
 		$('#testBox').on('change', function(){
 			var lan = $('#testBox').val();
 			
-			location.href='<c:url value="?lang='+lan+'"/>';
+			/* 안 되는 부분 */
+			/*  location.href='<c:url value="?lang='+lan+'"/>'; */
+			location.href = "/board/listPageSearch?num=1" + "/?lang=" + lan;
 			
-		/* 	location.href='<c:url value="index.do?lang='+lan+'"/>'; */	
-		});	
+			/* location.href='<c:url value="index.do?lang='+lan+'"/>'; */
+		});
 	});
  	
 </script>
 </body>
 
 
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+<!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-	crossorigin="anonymous"></script>
+	crossorigin="anonymous"></script> -->
 <script
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
 	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
