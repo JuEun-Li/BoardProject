@@ -118,15 +118,15 @@ a:hover {
 	<div class="col-lg-2 col-md-3" style="float: right;">
 	<select class="form-control" id="testBox">
 		<option>언어 선택</option>
-		<option value="ko" selected>한국어</option>
+		<option value="ko">한국어</option>
 		<option value="zh">중국어</option>
 	</select>
 	</div>
 	
-	<p> 
-	<a href="<c:url value="/?lang=ko" />">한국어</a> 
-	<a href="<c:url value="/?lang=zh" />">중문</a> 
-	</p>
+<%-- 	<p> 
+	<a href="<c:url value="/i18n.do?lang=ko" />">한국어</a> 
+	<a href="<c:url value="/i18n.do?lang=zh" />">중문</a> 
+	</p> --%>
 
 		
 	<!-- 게시판 -->
@@ -209,12 +209,14 @@ a:hover {
 		
 		<li>
 			<button type="button" class="btn btn-default bg-warning">
-				<a href="/board/write">글 작성</a>
+				<!-- 글 작성 -->
+				<a href="/board/write"><spring:message code="site.write" /></a>
 			</button>
 		</li>
 		<li>
 			<button type="button" class="btn btn-default bg-success">
-				<a href="/board/listPageSearch?num=1">글 목록</a>
+				<!-- 글 목록 -->
+				<a href="/board/listPageSearch?num=1"><spring:message code="site.list" /></a>
 			</button>
 		</li>
 		
@@ -242,12 +244,10 @@ a:hover {
 		
 		$('#testBox').on('change', function(){
 			var lan = $('#testBox').val();
-			
+			location.href='<c:url value="/i18n.do?lang='+lan+'" />';
 			/* 안 되는 부분 */
-			/* location.href='<c:url value="?lang='+lan+'"/>'; */
-			location.href = "/board/listPageSearch?num=1" + "/?lang=" + lan;
-			
-			/* location.href='<c:url value="index.do?lang='+lan+'"/>'; */
+			/* location.href='<c:url value="?lang='+lan+'"/>';
+			/* location.href = "/board/listPageSearch?num=1" + "/?lang=" + lan; */		
 		});
 	});
  	
