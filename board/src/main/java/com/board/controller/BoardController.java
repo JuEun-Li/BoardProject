@@ -1,7 +1,6 @@
 package com.board.controller;
 
 import java.util.List;
-import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -24,14 +23,18 @@ import com.board.service.BoardService;
 @RequestMapping("/board/*")
 public class BoardController {
 
-	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 
-	@Autowired
-	private SessionLocaleResolver localeResolver;
+	  private static final Logger logger =
+	  LoggerFactory.getLogger(BoardController.class);
 
-	@Autowired
-	private MessageSource messageSource; //message-context.xml 에 선언되어있는 bean id 값
 
+	  @Autowired private SessionLocaleResolver localeResolver;
+
+
+	  @Autowired private MessageSource messageSource;
+
+
+	// message-context.xml 에 선언되어있는 bean id 값
 
 	@Inject
 	BoardService service;
@@ -112,50 +115,49 @@ public class BoardController {
 	}
 
 	// 게시물 목록 + 페이징 추가 + 검색
-	@RequestMapping(value = "/listPageSearch", method = RequestMethod.GET)
-	public void getListPageSearch(Locale locale, Model model, @RequestParam("num") int num,
-			@RequestParam(value = "searchType",required = false, defaultValue = "title") String searchType,
-			@RequestParam(value = "keyword",required = false, defaultValue = "") String keyword
-			) throws Exception {
+		@RequestMapping(value = "/listPageSearch", method = RequestMethod.GET)
+		public void getListPageSearch(Model model, @RequestParam("num") int num,
+				@RequestParam(value = "searchType",required = false, defaultValue = "title") String searchType,
+				@RequestParam(value = "keyword",required = false, defaultValue = "") String keyword
+				) throws Exception {
 
-		/* logger.info("Welcome home! The client locale is {}.", locale); */
+			Page page = new Page();
 
-		Page page = new Page();
+			page.setNum(num);
+//			page.setCount(service.count());
+			page.setCount(service.searchCount(searchType, keyword));
 
-		page.setNum(num);
-		page.setCount(service.searchCount(searchType, keyword));
+			// 검색 타입과 검색어
+			page.setSearchTypeKeyword(searchType, keyword);
 
-		// 검색 타입과 검색어
-		page.setSearchTypeKeyword(searchType, keyword);
+			List<BoardVO> list = null;
+			// list = service.listPage(page.getDisplayPost(), page.getPostNum());
+			list = service.listPageSearch(page.getDisplayPost(), page.getPostNum(), searchType, keyword);
 
-		List<BoardVO> list = null;
-		list = service.listPageSearch(page.getDisplayPost(), page.getPostNum(), searchType, keyword);
+			model.addAttribute("list", list);
+			model.addAttribute("page", page);
+			model.addAttribute("select", num);
 
-		model.addAttribute("list", list);
-		model.addAttribute("page", page);
-		model.addAttribute("select", num);
-
-		model.addAttribute("searchType", searchType);
-		model.addAttribute("keyword", keyword);
-
-	}
+			model.addAttribute("searchType", searchType);
+			model.addAttribute("keyword", keyword);
 
 
-	/*
-	 * @RequestMapping(value = "/", method = RequestMethod.GET) public String
-	 * i18n(Locale locale, HttpServletRequest request, Model model) {
-	 *
-	 * logger.info("Welcome i18n! The client locale is {}.", locale);
-	 * logger.info("Session locale is {}.", localeResolver.resolveLocale(request));
-	 * logger.info(messageSource.getMessage("msg.board", null, "default text",
-	 * locale)); logger.info(messageSource.getMessage("msg.board", null,
-	 * "default text", locale)); logger.info(messageSource.getMessage("msg.board",
-	 * null, "default text", locale));
-	 *
-	 *
-	 * model.addAttribute("siteCount", messageSource.getMessage("msg.board", null,
-	 * locale)); return "i18n";
-	 *
-	 * }
-	 */
+
+		}
+
+		/*
+		 * @RequestMapping(value="/i18n.do", method = RequestMethod.GET) public String
+		 * i18n(Locale locale, HttpServletRequest request, Model model) {
+		 * logger.info("site.board : {}", messageSource.getMessage("site.board", null,
+		 * "default text", locale)); logger.info("site.num : {}",
+		 * messageSource.getMessage("site.num", null, "default text", locale));
+		 * logger.info("site.title : {}", messageSource.getMessage("site.title", null,
+		 * "default text", locale)); logger.info("site.date : {}",
+		 * messageSource.getMessage("site.date", null, "default text", locale));
+		 * logger.info("site.writer : {}", messageSource.getMessage("site.writer", null,
+		 * "default text", locale)); logger.info("site.count : {}",
+		 * messageSource.getMessage("site.count", null, "default text", locale));
+		 *
+		 * return "i18n"; }
+		 */
 }

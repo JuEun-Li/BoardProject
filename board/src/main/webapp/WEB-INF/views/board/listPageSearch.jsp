@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- 날짜 포멧 추가 -->
@@ -78,8 +78,7 @@ a:hover {
 }
 
 /* 폼 서식 */
-.control {
-   /*  display: block; */
+.con {
     width: 100%;
     height: calc(1.5em + .75rem + 2px);
     padding: .375rem .75rem;
@@ -106,7 +105,7 @@ a:hover {
 
 <!-- jquery 관련 태그들 -->	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
 <!-- <link rel="stylesheet" type="text/css" href="/common.css" /> -->
 <%-- <link href="<c:url value="/resources/static/common.css"/>" rel='stylesheet' /> --%>
@@ -123,23 +122,29 @@ a:hover {
 		<option value="zh">중국어</option>
 	</select>
 	</div>
+	
+	<p> 
+	<a href="<c:url value="/?lang=ko" />">한국어</a> 
+	<a href="<c:url value="/?lang=zh" />">중문</a> 
+	</p>
+
 		
 	<!-- 게시판 -->
-	<h1><spring:message code="msg.board" /></h1>
+	<h1><spring:message code="site.board" /></h1>
 
 	<table class="table table-hover col-lg-12 col-md-9">
 		<thead>
 			<tr>
 				<!-- 번호 -->
-				<th><spring:message code="msg.num" /></th>
+				<th><spring:message code="site.num" /></th>
 				<!-- 제목 -->
-				<th><spring:message code="msg.title" /></th>
+				<th><spring:message code="site.title" /></th>
 				<!-- 작성일 -->
-				<th><spring:message code="msg.date" /></th>
+				<th><spring:message code="site.date" /></th>
 				<!-- 작성자 -->
-				<th><spring:message code="msg.writer" /></th>
+				<th><spring:message code="site.writer" /></th>
 				<!-- 조회수 -->
-				<th><spring:message code="msg.count" /></th>
+				<th><spring:message code="site.count" /></th>
 			</tr>
 		</thead>
 		
@@ -188,7 +193,7 @@ a:hover {
 		
 		<!-- 검색 영역 -->
 		<div>
-			 <select name="searchType" class="control col-lg-2">
+			 <select name="searchType" class="con col-lg-2">
 			 	<!-- test 내부에 조건이 들어감, 이 조건이 참일 경우 selected를 출력, 거짓인 경우 아무 것도 출력하지 않음 -->
 			     <option value="title" <c:if test="${searchType eq 'title'}">selected</c:if>>제목</option>
 			     <option value="content" <c:if test="${searchType eq 'content'}">selected</c:if>>내용</option>
@@ -196,7 +201,7 @@ a:hover {
 			     <option value="writer" <c:if test="${searchType eq 'writer'}">selected</c:if>>작성자</option>
 			 </select>
 	 	
-			 <input type="text" name="keyword" value="${keyword}" class="control col-lg-3"/>
+			 <input type="text" name="keyword" value="${keyword}" class="con col-lg-3"/>
 			 
 			 <button type="button" id="searchBtn" class="btn btn-default">검색</button>
 		</div>
@@ -239,7 +244,7 @@ a:hover {
 			var lan = $('#testBox').val();
 			
 			/* 안 되는 부분 */
-			/*  location.href='<c:url value="?lang='+lan+'"/>'; */
+			/* location.href='<c:url value="?lang='+lan+'"/>'; */
 			location.href = "/board/listPageSearch?num=1" + "/?lang=" + lan;
 			
 			/* location.href='<c:url value="index.do?lang='+lan+'"/>'; */
