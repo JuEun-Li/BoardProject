@@ -5,6 +5,7 @@
 <style scoped>
 	.write-box {
 		text-align: center;
+		vertical-align: middle;
 	}
 	li {
 		list-style: none;
@@ -22,24 +23,24 @@
 	<%-- <div id="nav">
 	 <%@ include file="../include/nav.jsp" %>
 	</div> --%>
-	
+	<h1>게시물 작성</h1>
 <form method="post">
 <!-- input 과 textarea의 이름 속성의 값이 BoardVO와 일치해야한다. -->
-	<div class="write-box">
+	<div class="write-box ">
 		<label>제목</label>
-		<input type="text" name="title" /><br />
+		<input type="text" name="title" class="form-control"/><br />
 		
 		<label>작성자</label>
-		<input type="text" name="writer" /><br />
+		<input type="text" name="writer" class="form-control"/><br />
 		
 		<label>내용</label>
-		<textarea cols="100" rows="10" name="content"></textarea><br />
+		<textarea cols="100" rows="10" name="content" class="form-control"></textarea><br />
 		
-		<button type="submit" class="button rounded bg-warming">작성</button>
+		<button type="submit" class="btn btn-default bg-info">작성</button>
 	</div>
 </form>
 	<li>
-		<button type="button" class="button rounded">
+		<button type="button" class="btn btn-default bg-info">
 			<a href="/board/listPageSearch?num=1">글 목록(페이징 + 검색)</a>
 		</button>
 	</li>

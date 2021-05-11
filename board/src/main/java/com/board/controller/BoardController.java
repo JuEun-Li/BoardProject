@@ -56,7 +56,7 @@ public class BoardController {
 	public String postWrite(BoardVO vo) throws Exception {
 		service.write(vo);
 
-		return "redirect:/board/list";
+		return "redirect:/board/listPageSearch?num=1";
 	}
 
 	// 게시물 조회
@@ -118,19 +118,17 @@ public class BoardController {
 			@RequestParam(value = "keyword",required = false, defaultValue = "") String keyword
 			) throws Exception {
 
-		logger.info("Welcome home! The client locale is {}.", locale);
+		/* logger.info("Welcome home! The client locale is {}.", locale); */
 
 		Page page = new Page();
 
 		page.setNum(num);
-//		page.setCount(service.count());
 		page.setCount(service.searchCount(searchType, keyword));
 
 		// 검색 타입과 검색어
 		page.setSearchTypeKeyword(searchType, keyword);
 
 		List<BoardVO> list = null;
-		// list = service.listPage(page.getDisplayPost(), page.getPostNum());
 		list = service.listPageSearch(page.getDisplayPost(), page.getPostNum(), searchType, keyword);
 
 		model.addAttribute("list", list);

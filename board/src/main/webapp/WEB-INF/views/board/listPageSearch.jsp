@@ -51,6 +51,15 @@ h1 {
 	padding-top: 50px;
 	text-align: center;
 }
+#searchBtn {
+	background-color: lightgray;
+	color: white;
+	vertical-align: top;
+	 margin-top: 5%;
+}
+.form-control {
+	display: inline-block;
+}
 
 a:link {
 	text-decoration: none;
@@ -68,6 +77,24 @@ a:hover {
 	text-decoration: underline;
 }
 
+/* 폼 서식 */
+.control {
+   /*  display: block; */
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    
+    margin-top: 5%;
+}
 </style>
 
 <head>
@@ -159,27 +186,29 @@ a:hover {
 		</div>
 		<!-- 페이징 영역 끝 -->
 		
+		<!-- 검색 영역 -->
 		<div>
-		 <select name="searchType">
-		 	<!-- test 내부에 조건이 들어감, 이 조건이 참일 경우 selected를 출력, 거짓인 경우 아무 것도 출력하지 않음 -->
-		     <option value="title" <c:if test="${searchType eq 'title'}">selected</c:if>>제목</option>
-		     <option value="content" <c:if test="${searchType eq 'content'}">selected</c:if>>내용</option>
-		     <option value="title_content" <c:if test="${searchType eq 'title_content'}">selected</c:if>>제목+내용</option>
-		     <option value="writer" <c:if test="${searchType eq 'writer'}">selected</c:if>>작성자</option>
-		 </select>
- 
-		 <input type="text" name="keyword" value="${keyword}"/>
-		 
-		 <button type="button" id="searchBtn">검색</button>
+			 <select name="searchType" class="control col-lg-2">
+			 	<!-- test 내부에 조건이 들어감, 이 조건이 참일 경우 selected를 출력, 거짓인 경우 아무 것도 출력하지 않음 -->
+			     <option value="title" <c:if test="${searchType eq 'title'}">selected</c:if>>제목</option>
+			     <option value="content" <c:if test="${searchType eq 'content'}">selected</c:if>>내용</option>
+			     <option value="title_content" <c:if test="${searchType eq 'title_content'}">selected</c:if>>제목+내용</option>
+			     <option value="writer" <c:if test="${searchType eq 'writer'}">selected</c:if>>작성자</option>
+			 </select>
+	 	
+			 <input type="text" name="keyword" value="${keyword}" class="control col-lg-3"/>
+			 
+			 <button type="button" id="searchBtn" class="btn btn-default">검색</button>
 		</div>
+		<!-- 검색 영역 끝 -->
 		
 		<li>
-			<button type="button" class="button rounded bg-warming">
+			<button type="button" class="btn btn-default bg-warning">
 				<a href="/board/write">글 작성</a>
 			</button>
 		</li>
 		<li>
-			<button type="button" class="button rounded bg-info">
+			<button type="button" class="btn btn-default bg-success">
 				<a href="/board/listPageSearch?num=1">글 목록</a>
 			</button>
 		</li>
