@@ -11,11 +11,20 @@
 		list-style: none;
 		float: right;
 	}
+	input, textarea {
+		display: inline-block;
+		margin-left: auto;
+		margin-right: auto;
+		left: 25%;
+	}
+	h1 {
+		padding: 5%;
+	}
 
 </style>
 <head>
 <meta charset="UTF-8">
-<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link href="<c:url value="/resources/static/common.css"/>" rel='stylesheet' />
 <title>게시물 작성</title>
 </head>
@@ -28,19 +37,19 @@
 <!-- input 과 textarea의 이름 속성의 값이 BoardVO와 일치해야한다. -->
 	<div class="write-box ">
 		<label>제목</label>
-		<input type="text" name="title" class="form-control"/><br />
+		<input type="text" name="title" class="form-control col-lg-6"/><br />
 		
 		<label>작성자</label>
-		<input type="text" name="writer" class="form-control"/><br />
+		<input type="text" name="writer" class="form-control col-lg-6"/><br />
 		
 		<label>내용</label>
-		<textarea cols="100" rows="10" name="content" class="form-control"></textarea><br />
+		<textarea cols="100" rows="10" name="content" class="form-control col-lg-6"></textarea><br />
 		
-		<button type="submit" class="btn btn-default bg-info">작성</button>
+		<button type="submit" class="btn btn-default" style="background-color: rgb(235, 233, 250)">작성</button>
 	</div>
 </form>
 	<li>
-		<button type="button" class="btn btn-default bg-info">
+		<button type="button" class="btn btn-default" style="background-color: rgb(235, 233, 250)">
 			<a href="/board/listPageSearch?num=1">글 목록(페이징 + 검색)</a>
 		</button>
 	</li>

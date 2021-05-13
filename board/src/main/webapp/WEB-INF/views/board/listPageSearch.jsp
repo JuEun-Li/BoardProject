@@ -38,8 +38,8 @@ th:nth-child(2) {
 
 table th {
 	padding: 10px;
-	border: 1px solid aliceblue;
-	background-color: aliceblue;
+	border: 1px solid rgb(235, 233, 250);
+	background-color: rgb(235, 233, 250);
 	color: gray
 }
 li {
@@ -165,7 +165,7 @@ a:hover {
 
 	<div>
 		<!-- 페이징 영역 -->
-		<div style="text-align: center; font-size: 1.5vw; color: skyblue;">
+		<div style="text-align: center; font-size: 1.5vw; color: purple">
 			<c:if test="${page.prev}">
 				<span>[ <a href="/board/listPageSearch?num=${page.startPageNum - 1}${page.searchTypeKeyword}">이전</a> ]</span>
 			</c:if>
@@ -208,13 +208,13 @@ a:hover {
 		<!-- 검색 영역 끝 -->
 		
 		<li>
-			<button type="button" class="btn btn-default bg-warning">
+			<button type="button" class="btn btn-default" style="background-color: #f1f1f1">
 				<!-- 글 작성 -->
 				<a href="/board/write"><spring:message code="site.write" /></a>
 			</button>
 		</li>
 		<li>
-			<button type="button" class="btn btn-default bg-success">
+			<button type="button" class="btn btn-default" style="background-color: #f1f1f1">
 				<!-- 글 목록 -->
 				<a href="/board/listPageSearch?num=1"><spring:message code="site.list" /></a>
 			</button>

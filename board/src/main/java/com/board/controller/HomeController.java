@@ -36,4 +36,19 @@ public class HomeController {
 		return "home";
 	}
 
+	/*
+	 * @RequestMapping(value="/i18n.do", method = RequestMethod.GET) public String
+	 * i18n(Locale locale, HttpServletRequest request, Model model) {
+	 * logger.info("site.board : {}", messageSource.getMessage("site.board", null,
+	 * "default text", locale)); logger.info("site.num : {}",
+	 * messageSource.getMessage("site.num", null, "default text", locale));
+	 * logger.info("site.title : {}", messageSource.getMessage("site.title", null,
+	 * "default text", locale)); logger.info("site.date : {}",
+	 * messageSource.getMessage("site.date", null, "default text", locale));
+	 * logger.info("site.writer : {}", messageSource.getMessage("site.writer", null,
+	 * "default text", locale)); logger.info("site.count : {}",
+	 * messageSource.getMessage("site.count", null, "default text", locale));
+	 *
+	 * return "i18n"; }
+	 */
 }

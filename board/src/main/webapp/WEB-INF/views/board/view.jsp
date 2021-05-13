@@ -3,10 +3,11 @@
 <!DOCTYPE html>
 <html>
 <style scoped>
-	form {
-		border: 1px solid aliceblue;
+	label {
+		/* border: 1px solid aliceblue; */
 		text-align: center;
 		display: block;
+		padding: 1%;
 	}
 	h1 {
 		padding: 3% 0 5% 1%;
@@ -25,19 +26,19 @@
 	 <%@ include file="../include/nav.jsp" %>
 	</div><br /> --%>
 	
-	<h1> 게시물 상세 </h1><hr/>
+	<h1> 게시물 조회 </h1><hr/>
 	
 	
 <form method="post">
 
-	<label>제목</label>
+	<label>제목 |</label>
 	${view.title}<br />
 	
-	<label>작성자</label>
+	<label>작성자 |</label>
 	${view.writer}<br />
 	
-	<label>내용</label><br />
-	${view.content}<br />
+	<label>내용 |</label>
+	${view.content}<br /><hr />
 	
 	
 	<div>
@@ -47,7 +48,7 @@
 	
 	<li>
 		<button type="button" class="button rounded">
-			<a href="/board/listPageSearch?num=1">글 목록(페이징 + 검색)</a>
+			<a href="/board/listPageSearch?num=1" >글 목록(페이징 + 검색)</a>
 		</button>
 	</li>
 
