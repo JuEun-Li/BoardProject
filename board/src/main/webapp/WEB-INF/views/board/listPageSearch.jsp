@@ -49,6 +49,7 @@ li {
 
 h1 {
 	padding-top: 50px;
+	color: purple;
 	text-align: center;
 }
 #searchBtn {
@@ -127,7 +128,7 @@ a:hover {
 
 		
 	<!-- 게시판 -->
-	<h1><spring:message code="site.board" /></h1>
+	<h1><strong><spring:message code="site.board" /></strong></h1>
 
 	<table class="table table-hover col-lg-12 col-md-9">
 		<thead>
