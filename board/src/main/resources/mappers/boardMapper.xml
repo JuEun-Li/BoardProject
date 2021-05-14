@@ -12,12 +12,13 @@
 		from board.tbl_board
 	</select>
 
-	<!-- 게시물 작성 -->
+	<!-- 게시물 작성 + 파일 명 저장 -->
 	<insert id="write" parameterType="com.board.domain.BoardVO">
-		insert into
-		board.tbl_board(title, content, writer)
+		<![CDATA[insert into
+		board.tbl_board(title, content, writer, file_name)
 		values(#{title}, #{content},
-		#{writer})
+		#{writer}, #{fileName})
+		]]>
 	</insert>
 
 	<!-- 게시물 조회 -->

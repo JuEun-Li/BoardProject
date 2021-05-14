@@ -20,7 +20,7 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	/**
-	 * Simply selects the home view to render by returning its name.
+	 * 현재 페이지에서 번역 하도록 매칭
 	 */
 	@RequestMapping(value = "/i18n.do", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -31,10 +31,26 @@ public class HomeController {
 
 		String formattedDate = dateFormat.format(date);
 
-		model.addAttribute("serverTime", formattedDate );
+//		model.addAttribute("serverTime", formattedDate );
+
+		return "redirect:/board/listPageSearch?num=1";
+	}
+
+//	홈 화면 띄우기용
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home2(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+
+		String formattedDate = dateFormat.format(date);
+
+//		model.addAttribute("serverTime", formattedDate );
 
 		return "home";
 	}
+
 
 	/*
 	 * @RequestMapping(value="/i18n.do", method = RequestMethod.GET) public String

@@ -33,7 +33,7 @@
 	 <%@ include file="../include/nav.jsp" %>
 	</div> --%>
 	<h1>게시물 작성</h1>
-<form method="post">
+<form method="post" enctype="multipart/form-data">
 <!-- input 과 textarea의 이름 속성의 값이 BoardVO와 일치해야한다. -->
 	<div class="write-box ">
 		<label>제목</label>
@@ -45,12 +45,15 @@
 		<label>내용</label>
 		<textarea cols="100" rows="10" name="content" class="form-control col-lg-6"></textarea><br />
 		
+		<label>업로드</label>
+		<input type="file" name="uploadFile"/>
+		
 		<button type="submit" class="btn btn-default" style="background-color: rgb(235, 233, 250)">작성</button>
 	</div>
 </form>
 	<li>
 		<button type="button" class="btn btn-default" style="background-color: rgb(235, 233, 250)">
-			<a href="/board/listPageSearch?num=1">글 목록(페이징 + 검색)</a>
+			<a href="/board/listPageSearch?num=1">글 목록</a>
 		</button>
 	</li>
 </body>

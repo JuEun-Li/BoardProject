@@ -98,4 +98,6 @@ public class BoardDAOImpl implements BoardDAO {
 		sql.update(namespace + ".boardHit", bno);
 	}
 
+
+
 }

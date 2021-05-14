@@ -1,9 +1,12 @@
 package com.board.controller;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 import javax.inject.Inject;
 
+import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import com.board.domain.BoardVO;
@@ -57,8 +61,19 @@ public class BoardController {
 	// 게시물 작성
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String postWrite(BoardVO vo) throws Exception {
-		service.write(vo);
+		// 파일 업로드 처리
+		String fileName=null;
+		MultipartFile uploadFile = vo.getUploadFile();
+		if (!uploadFile.isEmpty()) {
+			String originalFileName = uploadFile.getOriginalFilename();
+			String ext = FilenameUtils.getExtension(originalFileName);	//확장자 구하기
+			UUID uuid = UUID.randomUUID();	//UUID 구하기
+			fileName=uuid+"."+ext;
+			uploadFile.transferTo(new File("C:\\STS\\" + fileName));
+		}
+		vo.setFileName(fileName);
 
+		service.write(vo);
 		return "redirect:/board/listPageSearch?num=1";
 	}
 
@@ -140,10 +155,8 @@ public class BoardController {
 
 			model.addAttribute("searchType", searchType);
 			model.addAttribute("keyword", keyword);
-
-
-
 		}
+
 
 
 }

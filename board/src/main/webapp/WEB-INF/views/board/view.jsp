@@ -68,12 +68,17 @@
 		<span style="display:inline-block; min-height: 250px;">${view.content}</span><br />
 
 			<%-- <a href="/board/modify?bno=${view.bno}">게시물 수정</a> --%>
-			<input type="button" id="moveModify" class="btn_shape btn btn-default" value="게시물 수정">
+		<input type="button" id="moveModify" class="btn_shape btn btn-default" value="게시물 수정">
 			
 			<%-- <a href="/board/delete?bno=${view.bno}">게시물 삭제</a> --%>
-			<input type="button" id="moveDelete" class="btn_shape btn btn-default"  
-				style="background-color: pink;" 
-				value="게시물 삭제">
+		<input type="button" id="moveDelete" class="btn_shape btn btn-default"  
+			style="background-color: pink;" 
+			value="게시물 삭제">
+			
+		<c:if test="${board.tbl_board.fileName ne null}">
+				<span>첨부파일</span>
+				<span><a href="fileDownload.do?fileName=${board.tbl_board.fileName}">${board.tbl_board.fileName}</a></span>
+		</c:if>
 	</div>
 
 		<!-- 뒤로 가기 버튼(데이터 유지) -->		

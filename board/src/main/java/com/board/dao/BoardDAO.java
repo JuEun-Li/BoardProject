@@ -34,5 +34,5 @@ public interface BoardDAO {
 	public int searchCount(String searchType, String keyword) throws Exception;
 
 	// 게시판 조회수
-		public void boardHit(int bno) throws Exception;
+	public void boardHit(int bno) throws Exception;
 }

@@ -242,9 +242,6 @@ a:hover {
 		$('#testBox').on('change', function(){
 			var lan = $('#testBox').val();
 			location.href='<c:url value="/i18n.do?lang='+lan+'" />';
-			/* 안 되는 부분 */
-			/* location.href='<c:url value="?lang='+lan+'"/>';
-			/* location.href = "/board/listPageSearch?num=1" + "/?lang=" + lan; */		
 		});
 	});
  	
