@@ -14,7 +14,8 @@
 
 	<!-- 게시물 작성 + 파일 명 저장 -->
 	<insert id="write" parameterType="com.board.domain.BoardVO">
-		<![CDATA[insert into
+		<![CDATA[
+		insert into
 		board.tbl_board(title, content, writer, file_name)
 		values(#{title}, #{content},
 		#{writer}, #{fileName})

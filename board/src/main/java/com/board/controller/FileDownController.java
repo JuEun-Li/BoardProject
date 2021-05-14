@@ -34,7 +34,7 @@ public class FileDownController {
 		} catch (UnsupportedEncodingException ex) {
 			System.out.println("UnsupportedEncodingException");
 		}
-		realFilename = "D:\\upload\\" + filename;
+		realFilename = "C:\\sts-file\\" + filename;
 		System.out.println(realFilename);
 		File file1 = new File(realFilename);
 		if (!file1.exists()) {

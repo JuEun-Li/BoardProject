@@ -66,7 +66,7 @@
 	
 	</form> --%>
 	
-	<form method="post">
+	<form method="post" enctype="multipart/form-data">
 
 		<div id="list" class="container col-lg-6 col-md-6">
 			<!-- 제목 -->
@@ -78,7 +78,9 @@
 			<span style="display:inline-block; min-height: 250px;">
 				<textarea cols="90" rows="10" name="content">${view.content}</textarea>
 			</span><br />
-	
+			
+			<label>업로드</label>
+			<input type="file" name="uploadFile"/>
 
 				<button type="submit" class="complete_btn btn_shape btn btn-default">완료</button>
 		</div>

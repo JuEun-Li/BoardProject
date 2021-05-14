@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html>
 <style scoped>
@@ -75,12 +76,11 @@
 			style="background-color: pink;" 
 			value="게시물 삭제">
 			
-		<c:if test="${board.tbl_board.fileName ne null}">
+		<c:if test="${view.fileName ne null}">
 				<span>첨부파일</span>
-				<span><a href="fileDownload.do?fileName=${board.tbl_board.fileName}">${board.tbl_board.fileName}</a></span>
+				<span><a href="fileDownload.do?fileName=${view.fileName}">${view.fileName}</a></span>
 		</c:if>
 	</div>
-
 		<!-- 뒤로 가기 버튼(데이터 유지) -->		
 		<input type="button" value="글 목록" class="btn_shape btn btn-default" onclick="history.back(-1)">
 

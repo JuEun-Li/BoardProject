@@ -69,7 +69,7 @@ public class BoardController {
 			String ext = FilenameUtils.getExtension(originalFileName);	//확장자 구하기
 			UUID uuid = UUID.randomUUID();	//UUID 구하기
 			fileName=uuid+"."+ext;
-			uploadFile.transferTo(new File("C:\\STS\\" + fileName));
+			uploadFile.transferTo(new File("C:\\sts-file\\" + fileName));
 		}
 		vo.setFileName(fileName);
 
