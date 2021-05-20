@@ -56,7 +56,7 @@
 	<h1> 게시물 조회 </h1>
 	
 	
-<form method="post">
+<form action="view" method="post">
 
 	<div id="list" class="container col-lg-6 col-md-6">
 		<!-- 제목 -->
