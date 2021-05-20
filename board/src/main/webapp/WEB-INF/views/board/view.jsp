@@ -1,6 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <!DOCTYPE html>
 <html>
 <style scoped>
@@ -104,7 +106,7 @@
 	/* 	$('#moveMove').on('click', function() {
 			location.href='/board/listPageSearch?num=1';
 		}); */
-		alert(${view.fileName});
+		/* alert(${view.fileName}); */
 	})
 </script>
 </body>
