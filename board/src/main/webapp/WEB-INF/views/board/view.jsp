@@ -57,17 +57,17 @@
 	<h1> 게시물 조회 </h1>
 	
 	
-<form action="view" method="post">
+<form action="view" method="post" enctype="multipart/form-data">
 
 	<div id="list" class="container col-lg-6 col-md-6">
 		<!-- 제목 -->
 		<h2 style="text-align: center;">${view.title}</h2><br>
 		
-		<label style="float: right;">작성자 : ${view.writer}</label>
+		<label style="float: right;">작성자 : <c:out value="${view.writer}" escapeXml="false"/></label>
 		<br />
 		
 		<!-- 내용 -->		
-		<span style="display:inline-block; min-height: 250px;">${view.content}</span><br />
+		<span style="display:inline-block; min-height: 250px;"><c:out value="${view.content}" escapeXml="false"/></span><br />
 
 			<%-- <a href="/board/modify?bno=${view.bno}">게시물 수정</a> --%>
 		<input type="button" id="moveModify" class="btn_shape btn btn-default" value="게시물 수정">
@@ -86,7 +86,10 @@
 		
 	</div>
 		<!-- 뒤로 가기 버튼(데이터 유지) -->		
-		<input type="button" value="글 목록" class="btn_shape btn btn-default" onclick="history.back(-1)">
+		<!-- <input type="button" value="글 목록" class="btn_shape btn btn-default" id="moveMove"> -->
+		<!-- <input type="button" value="글 목록" class="btn_shape btn btn-default" onclick="history.back(-1)"> -->
+		<input type="button" value="글 목록" class="btn_shape btn btn-default" onclick="location.href='/board/listPageSearch?num=1'">
+		
 
 </form>
 
@@ -102,10 +105,7 @@
 			location.href='/board/delete?bno=${view.bno}';
 		});
 		
-	/* 	$('#moveMove').on('click', function() {
-			location.href='/board/listPageSearch?num=1';
-		}); */
-		/* alert(${view.fileName}); */
+	
 	})
 </script>
 </body>
