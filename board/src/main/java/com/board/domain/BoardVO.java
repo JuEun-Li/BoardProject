@@ -22,19 +22,19 @@ public class BoardVO {
 		this.bno = bno;
 	}
 	public String getTitle() {
-		return title;
+		return title.replaceAll("(?i)<script", "&lt;script");
 	}
 	public void setTitle(String title) {
 		this.title = title;
 	}
 	public String getContent() {
-		return content;
+		return content.replaceAll("(?i)<script", "&lt;script");
 	}
 	public void setContent(String content) {
 		this.content = content;
 	}
 	public String getWriter() {
-		return writer;
+		return writer.replaceAll("(?i)<script", "&lt;script");
 	}
 	public void setWriter(String writer) {
 		this.writer = writer;
