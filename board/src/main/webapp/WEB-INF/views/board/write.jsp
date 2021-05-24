@@ -7,10 +7,11 @@
 	.write-box {
 		text-align: center;
 		vertical-align: middle;
-		border: 5px solid skyblue;
-		box-shadow: 10px 10px 5px aliceblue;
+		border: 5px solid azure;
+		box-shadow: 10px 10px 5px azure;
 		left: 25%;
-		padding: 3% 5% 5% 5%;
+		padding: 3% 2% 3% 2%;
+		background-color: azure;
 	}
 	li {
 		list-style: none;
@@ -23,7 +24,7 @@
 		margin-right: auto;
 		/* left: 25%; */
 		border: none;
-    	background-color: aliceblue;
+    	/* background-color: aliceblue; */
     	min-height: 50px;
     	box-shadow: 5px 5px 8px #f1f1f1;
     	border-radius: 7%;
@@ -52,15 +53,15 @@
 <form action="write" method="post" enctype="multipart/form-data">
 	<!-- input 과 textarea의 이름 속성의 값이 BoardVO와 일치해야한다. -->
 		<div class="write-box col-lg-6 col-md-6">
-		<label><strong>제목</strong></label><br>
+		<label>제목</label><br>
 		
 		<!-- form-control 클래스 값 넣어주면 됨. -->
 		<input type="text" name="title" class=" col-lg-6 col-md-6"/><br />
 		
-		<label><strong>작성자</strong></label><br>
+		<label>작성자</label><br>
 		<input type="text" name="writer" class=" col-lg-6 col-md-6"/><br />
 		
-		<label><strong>내용</strong></label><br>
+		<label>내용</label><br>
 		<textarea cols="100" rows="10" name="content" class=" col-lg-6 col-md-6"></textarea><br />
 		
 		<label><strong>업로드</strong></label>

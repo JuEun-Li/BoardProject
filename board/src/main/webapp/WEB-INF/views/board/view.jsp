@@ -86,7 +86,7 @@
 		
 	</div>
 		<!-- 뒤로 가기 버튼(데이터 유지) -->		
-		<!-- <input type="button" value="글 목록" class="btn_shape btn btn-default" id="moveMove"> -->
+		 <!-- <input type="button" value="글 목록" class="btn_shape btn btn-default" id="moveMove"> -->
 		<!-- <input type="button" value="글 목록" class="btn_shape btn btn-default" onclick="history.back(-1)"> -->
 		<input type="button" value="글 목록" class="btn_shape btn btn-default" onclick="location.href='/board/listPageSearch?num=1'">
 		
@@ -104,7 +104,9 @@
 		$('#moveDelete').on('click', function() {
 			location.href='/board/delete?bno=${view.bno}';
 		});
-		
+		/* $('moveMove').on('click', function() {
+			location.href = "/board/listPageSearch?num=1" + "&searchType=" + searchType + "&keyword=" + keyword;
+		}) */
 	
 	})
 </script>

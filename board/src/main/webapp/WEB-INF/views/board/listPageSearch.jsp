@@ -225,8 +225,6 @@ a:hover {
 		<%@ include file="../include/nav.jsp"%>
 	</div> --%>
 	
-</div>
-	
 <script>
 
  	document.getElementById("searchBtn").onclick = function () {
