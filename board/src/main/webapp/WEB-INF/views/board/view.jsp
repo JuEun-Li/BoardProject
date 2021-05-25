@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html>
 <html>
@@ -63,16 +64,14 @@
 		<!-- 제목 -->
 		<h2 style="text-align: center;">${view.title}</h2><br>
 		
-		<label style="float: right;">작성자 : <c:out value="${view.writer}" escapeXml="false"/></label>
+		<label style="float: right;">작성자 : <c:out value="${fn:escapeXml(view.writer)}" escapeXml="false"/></label>
 		<br />
 		
 		<!-- 내용 -->		
-		<span style="display:inline-block; min-height: 250px;"><c:out value="${view.content}" escapeXml="false"/></span><br />
+		<span style="display:inline-block; min-height: 250px;"><c:out value="${fn:escapeXml(view.content)}" escapeXml="false"/></span><br />
 
-			<%-- <a href="/board/modify?bno=${view.bno}">게시물 수정</a> --%>
 		<input type="button" id="moveModify" class="btn_shape btn btn-default" value="게시물 수정">
 			
-			<%-- <a href="/board/delete?bno=${view.bno}">게시물 삭제</a> --%>
 		<input type="button" id="moveDelete" class="btn_shape btn btn-default"  
 			style="background-color: pink;" 
 			value="게시물 삭제">

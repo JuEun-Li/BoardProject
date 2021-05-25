@@ -1,4 +1,5 @@
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- 날짜 포멧 추가 -->
@@ -134,6 +135,7 @@ a:hover {
 	<table class="table table-hover col-lg-12 col-md-9">
 		<thead>
 			<tr>
+				<!-- fn:escapeXml(member.userName) -->
 				<!-- 번호 -->
 				<th><spring:message code="site.num" /></th>
 				<!-- 제목 -->

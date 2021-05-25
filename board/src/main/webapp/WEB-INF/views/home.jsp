@@ -40,6 +40,8 @@
 <!-- member의 값이 null이 아닐 경우,로그인 성공인 상황. 하단 텍스트를 보여준다. -->
 <c:if test="${member !=null }">
 	<p>${member.userName}님 환영합니다.</p>
+	
+	<a href="member/logout">로그아웃</a>
 </c:if>
  
 </body>

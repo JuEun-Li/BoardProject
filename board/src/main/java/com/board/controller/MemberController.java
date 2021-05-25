@@ -58,4 +58,14 @@ public class MemberController {
 
 		return "redirect:/";
 	}
+
+	// 로그아웃 - 디비 연결 필요없음
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	public String logout(HttpSession session) throws Exception {
+		logger.info("get logout");
+
+		session.invalidate(); // 현재 가진 세션 값 제거
+
+		return "redirect:/";
+	}
 }
