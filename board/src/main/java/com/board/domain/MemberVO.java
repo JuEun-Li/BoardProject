@@ -12,8 +12,8 @@ public class MemberVO {
 	 */
 
 	private String userId;
-	private String userpass;
-	private String username;
+	private String userPass;
+	private String userName;
 	private Date regDate;
 
 	public String getUserId() {
@@ -22,17 +22,17 @@ public class MemberVO {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public String getUserpass() {
-		return userpass;
+	public String getUserPass() {
+		return userPass;
 	}
-	public void setUserpass(String userpass) {
-		this.userpass = userpass;
+	public void setUserPass(String userPass) {
+		this.userPass = userPass;
 	}
-	public String getUsername() {
-		return username;
+	public String getUserName() {
+		return userName;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	public Date getRegDate() {
 		return regDate;

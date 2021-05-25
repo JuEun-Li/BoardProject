@@ -244,7 +244,6 @@ a:hover {
 			location.href='<c:url value="/i18n.do?lang='+lan+'" />';
 		});
 	});
- 	
 </script>
 </body>
 
