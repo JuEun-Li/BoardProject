@@ -135,7 +135,6 @@ a:hover {
 	<table class="table table-hover col-lg-12 col-md-9">
 		<thead>
 			<tr>
-				<!-- fn:escapeXml(member.userName) -->
 				<!-- 번호 -->
 				<th><spring:message code="site.num" /></th>
 				<!-- 제목 -->
@@ -180,7 +179,7 @@ a:hover {
 					  
 					  <!-- 만약 select의 값이 num과 같을 경우 굵은 글자로 출력 -->
 					  <c:if test="${select == num}">
-					   <b>${num}</b>
+					   <b style="padding: 0.5%; font-size: 1.7vw">${num}</b>
 					  </c:if>
 					    
 				 </span>
@@ -217,7 +216,9 @@ a:hover {
 		<li>
 			<button type="button" class="btn btn-default" style="background-color: #f1f1f1">
 				<!-- 글 목록 -->
-				<a href="/board/listPageSearch?num=1"><spring:message code="site.list" /></a>
+				<a href="/board/listPageSearch?num=1">
+				<spring:message code="site.list" />
+				</a>
 			</button>
 		</li>
 		
@@ -228,7 +229,7 @@ a:hover {
 	</div> --%>
 	
 <script>
-
+	/* 검색 링크 구간 */
  	document.getElementById("searchBtn").onclick = function () {
    
 	  	let searchType = document.getElementsByName("searchType")[0].value;

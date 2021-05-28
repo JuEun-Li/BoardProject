@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
@@ -26,6 +27,7 @@ import com.board.service.BoardService;
 
 @Controller
 @RequestMapping("/board/*")
+@SessionAttributes("board")
 public class BoardController {
 
 
@@ -69,6 +71,7 @@ public class BoardController {
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String postWrite(BoardVO vo) throws Exception {
 		// 파일 업로드 처리
+
 		String fileName=null;
 		MultipartFile uploadFile = vo.getUploadFile();
 		if (!uploadFile.isEmpty()) {
@@ -78,9 +81,9 @@ public class BoardController {
 			fileName=uuid+"."+ext;
 			uploadFile.transferTo(new File("C:\\sts-file\\" + fileName));
 		}
-		vo.setFileName(fileName);
-
+		  vo.setFileName(fileName);
 		service.write(vo);
+
 		return "redirect:/board/listPageSearch?num=1";
 	}
 
@@ -163,7 +166,4 @@ public class BoardController {
 			model.addAttribute("searchType", searchType);
 			model.addAttribute("keyword", keyword);
 		}
-
-
-
 }

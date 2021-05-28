@@ -1,7 +1,9 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> --%>
+<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -78,16 +80,16 @@
 			
 			
 		<!-- 문제 부분 -->
-		<c:if test="${view.fileName ne null}">
-				<span>첨부파일</span>
-				<span><a href="fileDownload.do?fileName=${view.fileName}">${view.fileName}</a></span>
-		</c:if>
+	<%-- 	 <c:if test="${board.fileName ne null}"> --%>
+				<span>첨부파일${view.fileName}</span>
+				<div><a href="fileDownload.do?fileName=${view.fileName}">${view.fileName}</a></div>
+		<%--  </c:if> --%>
 		
 	</div>
 		<!-- 뒤로 가기 버튼(데이터 유지) -->		
 		 <!-- <input type="button" value="글 목록" class="btn_shape btn btn-default" id="moveMove"> -->
 		<!-- <input type="button" value="글 목록" class="btn_shape btn btn-default" onclick="history.back(-1)"> -->
-		<input type="button" value="글 목록" class="btn_shape btn btn-default" onclick="location.href='/board/listPageSearch?num=1'">
+		<input type="button" value="글 목록" id="list_btn" class="btn_shape btn btn-default" onclick="location.href='/board/listPageSearch?num=1'">
 		
 
 </form>
@@ -108,6 +110,30 @@
 		}) */
 	
 	})
+	
+	/* 글 목록 돌아가기 링크 구간 */
+ 	/*  document.getElementById("list_btn").onclick = function () {	  	
+	  		if(searchType === 'title') {
+	  			location.href = "/board/listPageSearch?num=1" + "&searchType=" + title + "&keyword=" + keyword;
+	  			break;
+	  		}
+	  		else if(searchType === 'content') {
+	  			location.href = "/board/listPageSearch?num=1" + "&searchType=" + content + "&keyword=" + keyword;
+	  			break;
+	  		}
+	  		else if(searchType === 'title_content') {
+	  			location.href = "/board/listPageSearch?num=1" + "&searchType=" + title_content + "&keyword=" + keyword;
+	  			break;
+	  		}
+	  		else if(searchType === 'writer') {
+	  			location.href = "/board/listPageSearch?num=1" + "&searchType=" + writer + "&keyword=" + keyword;
+	  			break;
+	  		}
+	  		else {
+	  			location.href = "/board/listPageSearch?num=1";
+	  			break;
+	  		}
+ 	}; */
 </script>
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

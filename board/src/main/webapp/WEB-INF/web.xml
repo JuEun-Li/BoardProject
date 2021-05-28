@@ -28,6 +28,7 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
 				/WEB-INF/spring/appServlet/servlet-context.xml
+				/WEB-INF/spring/context-common.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
@@ -37,6 +38,13 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	<!-- fileupload multipart-config maxSize set -->
+	<multipart-config>
+        <max-file-size>104857600</max-file-size> <!-- 10MB limit -->
+        <max-request-size>104857600</max-request-size>
+        <file-size-threshold>0</file-size-threshold>
+    </multipart-config>
+    <!-- fileupload multipart-config -->
 	<!-- 문자 인코딩 시작 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>

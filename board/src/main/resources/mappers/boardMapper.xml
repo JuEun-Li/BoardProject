@@ -13,14 +13,14 @@
 	</select>
 
 	<!-- 게시물 작성 + 파일 명 저장 -->
-	<insert id="write" parameterType="com.board.domain.BoardVO">
+	<select id="write" parameterType="com.board.domain.BoardVO">
 		<![CDATA[
 		insert into
-		board.tbl_board(title, content, writer, file_name)
-		values(#{title}, #{content},
+		board.tbl_board(bno,title, content, writer, file_name)
+		values(#{bno},#{title}, #{content},
 		#{writer}, #{fileName})
 		]]>
-	</insert>
+	</select>
 
 	<!-- 게시물 조회 -->
 	<select id="view" parameterType="int"
@@ -39,7 +39,8 @@
 		set
 		title = #{title},
 		content = #{content},
-		writer = #{writer}
+		writer = #{writer},
+		file_name = #{fileName}
 		where bno =
 		#{bno}
 	</update>
