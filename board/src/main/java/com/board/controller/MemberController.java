@@ -68,4 +68,22 @@ public class MemberController {
 
 		return "redirect:/";
 	}
+
+	// 회원수정 수정 get
+	@RequestMapping(value = "/modify_pass", method = RequestMethod.GET)
+	public void getModify() throws Exception {
+		logger.info("get modify_pass");
+	}
+
+	// 회원 수정 post
+	@RequestMapping(value = "/modify_pass", method = RequestMethod.POST)
+	public String postModify(HttpSession session, MemberVO vo) throws Exception {
+		logger.info("post modify_pass");
+
+		service.modify_pass(vo);
+
+		session.invalidate(); // 비밀 번호 수정 시 이 코드에 의해 현재 세션이 제거 - 로그아웃 됨.
+
+		return "redirect:/";
+	}
 }

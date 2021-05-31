@@ -11,6 +11,7 @@ public class BoardVO {
 	private String writer;
 	private Date regDate;
 	private int viewCnt;
+
 	private String fileName;
 	private MultipartFile uploadFile;
 
@@ -51,7 +52,6 @@ public class BoardVO {
 		this.viewCnt = viewCnt;
 	}
 
-	// 파일 업로드
 	public String getFileName() {
 		return fileName;
 	}

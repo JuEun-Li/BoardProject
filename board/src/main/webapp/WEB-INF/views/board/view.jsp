@@ -43,6 +43,9 @@
 		
 		float: right;
 	}
+	form {
+		margin-top: 5%;
+	}
 
 </style>
 <head>
@@ -56,9 +59,6 @@
 <title>게시물 조회</title>
 </head>
 <body>
-	
-	<h1> 게시물 조회 </h1>
-	
 	
 <form action="view" method="post" enctype="multipart/form-data">
 

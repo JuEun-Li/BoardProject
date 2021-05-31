@@ -14,8 +14,17 @@
 	<!-- 로그인 -->
 	<select id="login" resultType="com.board.domain.MemberVO">
 		select userId, userName
-		from board.myMember
+		from
+		board.myMember
 		where userId = #{userId}
 		and userPass = #{userPass}
 	</select>
+
+	<!-- 회원정보 수정 -->
+	<update id="modify_pass">
+		update board.myMember
+		set
+		userPass = #{userPass}
+		where userName = #{userName}
+	</update>
 </mapper>

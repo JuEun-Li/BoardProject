@@ -47,6 +47,7 @@ table th {
 li {
 	list-style: none;
 	float: right;
+	display: inline-block;
 }
 
 h1 {
@@ -113,7 +114,18 @@ a:hover {
 <title>게시물 목록</title>
 </head>
 <body class="container">
-
+			<c:if test="${member !=null }">			
+				<a href="/member/modify_pass">회원정보 수정</a>
+				<a href="/member/logout">로그아웃</a>
+			</c:if>
+			<c:if test="${member == null }">			
+				<li>
+					<button type="button" class="btn btn-default" style="background-color: #f1f1f1;">
+						<!-- 로그인 페이지 -->
+						<a href="/">로그인</a>
+					</button>
+				</li>
+			</c:if>
 		<!-- 언어 선택 영역 -->
 	<div class="col-lg-2 col-md-3" style="float: right;">
 	<select class="form-control" id="testBox">
@@ -132,7 +144,7 @@ a:hover {
 	<!-- 게시판 -->
 	<h1><strong><spring:message code="site.board" /></strong></h1>
 
-	<table class="table table-hover col-lg-12 col-md-9">
+	<table class="table table-hover col-lg-12">
 		<thead>
 			<tr>
 				<!-- 번호 -->
@@ -206,6 +218,7 @@ a:hover {
 			 <button type="button" id="searchBtn" class="btn btn-default">검색</button>
 		</div>
 		<!-- 검색 영역 끝 -->
+		
 		
 		<li>
 			<button type="button" class="btn btn-default" style="background-color: #f1f1f1">
