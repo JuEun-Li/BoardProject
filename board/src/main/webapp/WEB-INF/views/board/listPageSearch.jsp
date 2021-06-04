@@ -5,6 +5,7 @@
 <!-- 날짜 포멧 추가 -->
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
 
 <!DOCTYPE html>
 <html>
@@ -15,7 +16,7 @@ table {
 	border-collapse: collapse;
 	text-align: center;
 	font-size: 1.0vw;
-	margin-top: 5%;
+	margin-top: 2%;
 }
 
 button:active {
@@ -44,41 +45,49 @@ table th {
 	background-color: rgb(235, 233, 250);
 	color: gray
 }
-li {
-	list-style: none;
-	float: right;
-	display: inline-block;
-}
 
-h1 {
-	padding-top: 50px;
-	color: purple;
+h2 {
+	padding-top: 40px;
+	padding-bottom: 2%;
+	color: rgb(171 156 216);
 	text-align: center;
 }
 #searchBtn {
 	background-color: lightgray;
 	color: white;
 	vertical-align: top;
-	 margin-top: 5%;
+	height: 38px;
 }
 .form-control {
 	display: inline-block;
 }
 
-a:link {
-	text-decoration: none;
+/* 글 작성, 목록, 회원 정보 수정 버튼 */
+.write_btn, .list_btn, .member_modify_btn{
+	float: right;
+	padding: 10px;
+	border: 1px solid rgb(215, 223, 250);
+	background-color: rgb(215, 223, 250);
+	/* color: gray; */
+	color: white;
+	border-radius: .25rem;
+	margin-right: 0.5%;
+}
+.member_modify_btn {
+	float: left;
+	background-color: rgb(171 156 216);	
+	border: rgb(171 156 216);
 }
 
-a:visited {
-	text-decoration: none;
+/* 글 작성 ㅡㄴ */
+.write_btn {
+	border: 1px solid rgb(200, 196, 226);
+	background-color:rgb(200, 196, 226);
 }
-
-a:active {
-	text-decoration: none;
-}
-
-a:hover {
-	text-decoration: underline;
+.write_btn:hover, .list_btn:hover, .member_modify_btn:hover {
+	 background-color: rgba(0,0,0,0);
+	 color: rgb(171 156 216);
+	 cursor: pointer;
 }
 
 /* 폼 서식 */
@@ -95,8 +104,6 @@ a:hover {
     border: 1px solid #ced4da;
     border-radius: .25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    
-    margin-top: 5%;
 }
 </style>
 
@@ -109,23 +116,22 @@ a:hover {
 
 <!-- jquery 관련 태그들 -->	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
 <title>게시물 목록</title>
 </head>
 <body class="container">
-			<c:if test="${member !=null }">			
-				<a href="/member/modify_pass">회원정보 수정</a>
-				<a href="/member/logout">로그아웃</a>
-			</c:if>
-			<c:if test="${member == null }">			
-				<li>
-					<button type="button" class="btn btn-default" style="background-color: #f1f1f1;">
-						<!-- 로그인 페이지 -->
-						<a href="/">로그인</a>
-					</button>
-				</li>
-			</c:if>
+		<c:if test="${member !=null }">			
+			<button type="button" class="member_modify_btn" onclick="location.href='/member/modify_pass'">회원정보 수정</button>		
+			<button type="button" class="btn default" onclick="location.href='/member/logout'">로그아웃</button>		
+		</c:if>
+		
+		<c:if test="${member == null }">			
+			<button type="button" class="btn btn-default">
+				<!-- 로그인 페이지 -->
+				<a href="/">로그인</a>
+			</button>
+		</c:if>
+		
 		<!-- 언어 선택 영역 -->
 	<div class="col-lg-2 col-md-3" style="float: right;">
 	<select class="form-control" id="testBox">
@@ -135,15 +141,29 @@ a:hover {
 	</select>
 	</div>
 	
-<%-- 	<p> 
-	<a href="<c:url value="/i18n.do?lang=ko" />">한국어</a> 
-	<a href="<c:url value="/i18n.do?lang=zh" />">중문</a> 
-	</p> --%>
-
+	<!-- 환영합니다! -->
+	<h2><strong><spring:message code="site.board" /></strong></h2>
+	<br>
+	
+		<!-- 검색 영역 -->
+		<div style="display: inline;">
+			 <select name="searchType" class="con col-lg-2">
+			 	<!-- test 내부에 조건이 들어감, 이 조건이 참일 경우 selected를 출력, 거짓인 경우 아무 것도 출력하지 않음 -->
+			     <option value="title" <c:if test="${page.searchType eq 'title'}">selected</c:if>>제목</option>
+			     <option value="content" <c:if test="${page.searchType eq 'content'}">selected</c:if>>내용</option>
+			     <option value="title_content" <c:if test="${page.searchType eq 'title_content'}">selected</c:if>>제목+내용</option>
+			     <option value="writer" <c:if test="${page.searchType eq 'writer'}">selected</c:if>>작성자</option>
+			 </select>
+	 	
+			 <input type="text" name="keyword" value="${page.keyword}" class="con col-lg-3"/>
+			 
+			 <button type="button" id="searchBtn" class="btn btn-default"><i class="fas fa-search"></i></button>
+		</div>
+		<!-- 검색 영역 끝 -->
 		
-	<!-- 게시판 -->
-	<h1><strong><spring:message code="site.board" /></strong></h1>
-
+	<span style="float: right; color: rgb(171 156 216); font-size: 1.2vw;">
+		게시물 수: ${count}개
+	</span>
 	<table class="table table-hover col-lg-12">
 		<thead>
 			<tr>
@@ -164,8 +184,15 @@ a:hover {
 		<tbody>
 			<c:forEach items="${list}" var="list">
 				<tr>
-					<td>${list.bno}</td>
-					<td><a href="/board/view?bno=${list.bno}">${list.title}</a></td>
+					<td>${list.rowno}</td>
+					
+					<!-- 아래 a태그 클릭시 상세 조회 -->
+					<td>
+						<a href="/board/view?bno=${list.rowno}&
+											searchType=${page.searchType}&
+											keyword=${page.keyword}">${list.title}</a>
+					</td>
+					
 					<td><fmt:formatDate value="${list.regDate}" pattern="yyyy-MM-dd" /></td>
 					<td>${list.writer}</td>
 					<td>${list.viewCnt}</td>
@@ -177,7 +204,7 @@ a:hover {
 
 	<div>
 		<!-- 페이징 영역 -->
-		<div style="text-align: center; font-size: 1.5vw; color: purple">
+		<div style="text-align: center; font-size: 1.5vw; color: rgb(171 156 216);">
 			<c:if test="${page.prev}">
 				<span>[ <a href="/board/listPageSearch?num=${page.startPageNum - 1}${page.searchTypeKeyword}">이전</a> ]</span>
 			</c:if>
@@ -203,37 +230,17 @@ a:hover {
 		</div>
 		<!-- 페이징 영역 끝 -->
 		
-		<!-- 검색 영역 -->
-		<div>
-			 <select name="searchType" class="con col-lg-2">
-			 	<!-- test 내부에 조건이 들어감, 이 조건이 참일 경우 selected를 출력, 거짓인 경우 아무 것도 출력하지 않음 -->
-			     <option value="title" <c:if test="${searchType eq 'title'}">selected</c:if>>제목</option>
-			     <option value="content" <c:if test="${searchType eq 'content'}">selected</c:if>>내용</option>
-			     <option value="title_content" <c:if test="${searchType eq 'title_content'}">selected</c:if>>제목+내용</option>
-			     <option value="writer" <c:if test="${searchType eq 'writer'}">selected</c:if>>작성자</option>
-			 </select>
-	 	
-			 <input type="text" name="keyword" value="${keyword}" class="con col-lg-3"/>
-			 
-			 <button type="button" id="searchBtn" class="btn btn-default">검색</button>
-		</div>
-		<!-- 검색 영역 끝 -->
 		
-		
-		<li>
-			<button type="button" class="btn btn-default" style="background-color: #f1f1f1">
+				
 				<!-- 글 작성 -->
-				<a href="/board/write"><spring:message code="site.write" /></a>
-			</button>
-		</li>
-		<li>
-			<button type="button" class="btn btn-default" style="background-color: #f1f1f1">
+				<button type="button" class="write_btn" onclick="location.href='/board/write'">
+					<spring:message code="site.write" />
+				</button>		
+				
 				<!-- 글 목록 -->
-				<a href="/board/listPageSearch?num=1">
-				<spring:message code="site.list" />
-				</a>
-			</button>
-		</li>
+				<button type="button" class="list_btn" onclick="location.href='/board/listPageSearch?num=1'">
+					<spring:message code="site.list" />
+				</button>	
 		
 	</div>
 	
@@ -262,11 +269,6 @@ a:hover {
 	});
 </script>
 </body>
-
-
-<!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-	crossorigin="anonymous"></script> -->
 <script
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
 	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"

@@ -6,8 +6,7 @@
 <mapper namespace="com.board.mappers.memberMapper">
 	<!-- 회원 가입 -->
 	<insert id="register">
-		insert into board.myMember(userId, userPass,
-		userName)
+		insert into board.myMember(userId, userPass, userName)
 		values(#{userId}, #{userPass}, #{userName})
 	</insert>
 

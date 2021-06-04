@@ -50,24 +50,11 @@
 </head>
 <body>
 	<h1>게시물 수정</h1>
-	<%-- <form method="post">		
-		 
-		<label>제목</label>
-		<input type="text" name="title" value="${view.title}"/><br />
-		
-		<label>작성자</label>
-		<input type="text" name="writer" value="${view.writer}"/><br />
-		
-		<label>내용</label>
-		<textarea cols="50" rows="5" name="content">${view.content}</textarea><br />
-	
-		<button type="submit" class="btn">완료</button>
-		
-		<input type="button" id="moveMove" class="btn_shape btn btn-default" value="취소">
-	
-	</form> --%>
 	
 	<form method="post" enctype="multipart/form-data">
+	
+<input type="hidden" id = "SearchType" name="SearchType" value="${page.searchType}" readonly="readonly"/>
+<input type="hidden" id = "keyword" name="keyword" value="${page.keyword}" readonly="readonly"/>
 
 		<div id="list" class="container col-lg-6 col-md-6">
 			<!-- 제목 -->
@@ -78,16 +65,18 @@
 			<!-- 내용 -->		
 			<span style="display:inline-block; min-height: 250px;">
 				<textarea cols="90" rows="10" name="content">${view.content}</textarea>
-			</span><br />
-			
+			</span>
+			<br />
+
+			<!-- 파일 업로드 -->			
 			<label>업로드</label>
 			<input type="file" name="uploadFile"/>
 
-				<button type="submit" class="complete_btn btn_shape btn btn-default">완료</button>
+			<button type="submit" class="complete_btn btn_shape btn btn-default">완료</button>
 		</div>
 	</form>
 	
-				<input type="button" id="moveMove" class="cancel_btn rounded" value="취소">
+				<input type="button" id="cancel_btn" class="cancel_btn rounded" value="취소">
 </body>
 <script>
 
@@ -95,7 +84,15 @@
 	$(document).ready(function() {
 		$('#moveMove').on('click', function() {
 			location.href='/board/listPageSearch?num=1';
+			/* location.href='/board/listPageSearch?num=1" + "&searchType=" + searchType + "&keyword=" + keyword'; */
 		});
+	})
+	
+	//취소 버튼 클릭
+	$('#cancel_btn').click(function() {
+		self.location = "/board/listPageSearch?"
+				+ "num=${1}"
+				+ "&searchType=${page.searchType}&keyword=${page.keyword}";
 	})
 </script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

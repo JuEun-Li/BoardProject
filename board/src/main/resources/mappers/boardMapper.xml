@@ -16,7 +16,7 @@
 	<insert id="write" parameterType="com.board.domain.BoardVO">
 		<![CDATA[
 		insert into
-		board.tbl_board(bno,title, content, writer, file_name)
+		bno,title, content, writer, file_name)
 		values(#{bno},#{title}, #{content},
 		#{writer}, #{fileName})
 		]]>
@@ -25,12 +25,11 @@
 	<!-- 게시물 조회 -->
 	<select id="view" parameterType="int"
 		resultType="com.board.domain.BoardVO">
-		select
-		bno, title, content, writer, regDate, viewCnt, file_name
-		from
-		board.tbl_board
-		where
-		bno = #{bno}
+		SELECT tb.rowno, tb.title, tb.content, tb.writer, tb.regDate, tb.viewCnt, tb.file_name
+			FROM (SELECT bno, title, content,  writer, regDate, viewCnt, file_name, row_number() over() AS rowno
+					FROM board.tbl_board
+					) AS tb
+		where rowno = #{rowno}
 	</select>
 
 	<!-- 게시물 수정 -->
@@ -70,10 +69,10 @@
 	<!-- 게시물 목록 + 페이징 + 검색 -->
 	<select id="listPageSearch" parameterType="hashMap"
 		resultType="com.board.domain.BoardVO">
-			select
-			bno, title, writer, regDate, viewCnt
-			from board.tbl_board
-		
+			SELECT tb.rowno, tb.title, tb.content, tb.writer, tb.regDate, tb.viewCnt, tb.file_name
+			FROM (SELECT bno, title, content,  writer, regDate, viewCnt, file_name, row_number() over() AS rowno
+					FROM board.tbl_board
+					) AS tb
 		<!-- 제목 검색 쿼리 -->
 		<if test='searchType.equals("title")'>
 			where title like concat('%', #{keyword}, '%')
@@ -95,7 +94,8 @@
 			where writer like concat('%', #{keyword}, '%')
 		</if>
 		
-		order by bno desc
+		<!-- ORDER BY bno desc -->
+		order by regDate desc
 		limit #{displayPost}, #{postNum}
 	</select>
 	

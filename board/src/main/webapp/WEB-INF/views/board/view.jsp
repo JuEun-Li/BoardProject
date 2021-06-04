@@ -36,8 +36,8 @@
 	}
 	#moveModify, #moveDelete {
 		border-style: none;
-		background-color: rgb(235, 233, 250);
-		color: gray;
+		background-color: rgb(200, 196, 226);
+		color: white;
 		padding: 2%;
 		margin: 0 1% 0 0;
 		
@@ -62,78 +62,68 @@
 	
 <form action="view" method="post" enctype="multipart/form-data">
 
+<!-- 검색어 저장 관련 -->
+<%-- <input type="hidden" id = "num" name="num" value="${page.num}" readonly="readonly"/> --%>
+<input type="hidden" id = "SearchType" name="SearchType" value="${page.searchType}" readonly="readonly"/>
+<input type="hidden" id = "keyword" name="keyword" value="${page.keyword}" readonly="readonly"/>
+<!-- 검색어 저장 관련 끝-->
+
 	<div id="list" class="container col-lg-6 col-md-6">
 		<!-- 제목 -->
 		<h2 style="text-align: center;">${view.title}</h2><br>
 		
-		<label style="float: right;">작성자 : <c:out value="${fn:escapeXml(view.writer)}" escapeXml="false"/></label>
+		<!-- 작성자 -->
+		<label style="float: right;">
+		작성자 : <c:out value="${fn:escapeXml(view.writer)}" escapeXml="false"/>
+		</label>
 		<br />
 		
 		<!-- 내용 -->		
 		<span style="display:inline-block; min-height: 250px;"><c:out value="${fn:escapeXml(view.content)}" escapeXml="false"/></span><br />
 
+		<!-- 게시물 수정 -->
 		<input type="button" id="moveModify" class="btn_shape btn btn-default" value="게시물 수정">
 			
+		<!-- 게시물 삭제 -->
 		<input type="button" id="moveDelete" class="btn_shape btn btn-default"  
 			style="background-color: pink;" 
 			value="게시물 삭제">
 			
+		<!-- 목록 -->
+		<button type="button" id="list_btn" class="btn_shape btn btn-default" >목록</button>
+			
 			
 		<!-- 문제 부분 -->
-	<%-- 	 <c:if test="${board.fileName ne null}"> --%>
+	    <%--  <c:if test="${board.fileName ne null}"> --%>
 				<span>첨부파일${view.fileName}</span>
 				<div><a href="fileDownload.do?fileName=${view.fileName}">${view.fileName}</a></div>
 		<%--  </c:if> --%>
 		
 	</div>
-		<!-- 뒤로 가기 버튼(데이터 유지) -->		
-		 <!-- <input type="button" value="글 목록" class="btn_shape btn btn-default" id="moveMove"> -->
-		<!-- <input type="button" value="글 목록" class="btn_shape btn btn-default" onclick="history.back(-1)"> -->
-		<input type="button" value="글 목록" id="list_btn" class="btn_shape btn btn-default" onclick="location.href='/board/listPageSearch?num=1'">
-		
-
 </form>
 
 <script>
-
-	/* 글 목록 이동 스크립트 */
+	/* 삭제, 수정 스크립트 */
 	$(document).ready(function() {
 		$('#moveModify').on('click', function() {
-			location.href='/board/modify?bno=${view.bno}';
+			location.href= "/board/modify?bno=${view.bno}"
+					+ "&searchType=${page.searchType}&keyword=${page.keyword}";
+				
 		});
 		
 		$('#moveDelete').on('click', function() {
-			location.href='/board/delete?bno=${view.bno}';
+			location.href="/board/delete?bno=${view.bno}"
+					+ "&searchType=${page.searchType}&keyword=${page.keyword}";
 		});
-		/* $('moveMove').on('click', function() {
-			location.href = "/board/listPageSearch?num=1" + "&searchType=" + searchType + "&keyword=" + keyword;
-		}) */
-	
 	})
 	
-	/* 글 목록 돌아가기 링크 구간 */
- 	/*  document.getElementById("list_btn").onclick = function () {	  	
-	  		if(searchType === 'title') {
-	  			location.href = "/board/listPageSearch?num=1" + "&searchType=" + title + "&keyword=" + keyword;
-	  			break;
-	  		}
-	  		else if(searchType === 'content') {
-	  			location.href = "/board/listPageSearch?num=1" + "&searchType=" + content + "&keyword=" + keyword;
-	  			break;
-	  		}
-	  		else if(searchType === 'title_content') {
-	  			location.href = "/board/listPageSearch?num=1" + "&searchType=" + title_content + "&keyword=" + keyword;
-	  			break;
-	  		}
-	  		else if(searchType === 'writer') {
-	  			location.href = "/board/listPageSearch?num=1" + "&searchType=" + writer + "&keyword=" + keyword;
-	  			break;
-	  		}
-	  		else {
-	  			location.href = "/board/listPageSearch?num=1";
-	  			break;
-	  		}
- 	}; */
+	// 목록 버튼 클릭
+	 $("#list_btn").click(function() {
+		location.href = "/board/listPageSearch?"
+				+ "num=${1}"
+				+ "&searchType=${page.searchType}&keyword=${page.keyword}";
+	});
+	
 </script>
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

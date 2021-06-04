@@ -6,6 +6,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class BoardVO {
 	private int bno;
+	private int rowno;
+	public int getRowno() {
+		return rowno;
+	}
+	public void setRowno(int rowno) {
+		this.rowno = rowno;
+	}
 	private String title;
 	private String content;
 	private String writer;

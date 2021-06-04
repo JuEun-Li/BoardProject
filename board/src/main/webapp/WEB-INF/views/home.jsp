@@ -27,9 +27,6 @@
 	    box-shadow: 3px 3px 7px rgb(252, 231, 221);
 	    font-size: 1.2vw;
 	}
-	.sub_box {
-		/* display: inline-block; */
-	}
 	/* 폼 서식 */
 	.con {
 	    height: calc(1.5em + .75rem + 5px);
@@ -75,7 +72,7 @@
 	  border:1.5px solid rgb(200, 196, 226);
 	  box-shadow: 2px 2px 2px lightgray;
 	  background-color: rgb(200, 196, 226);
-	  margin-bottom: 10%; /*바닥과 좀 떨어지게*/
+	  margin-bottom: 5%; /*바닥과 좀 떨어지게*/
 	}
 	button:hover {
 	  background-color: rgba(0,0,0,0);
@@ -131,10 +128,11 @@
 	
 	<!-- member의 값이 null이 아닐 경우,로그인 성공인 상황. 하단 텍스트를 보여준다. -->
 	<c:if test="${member !=null }">
-		<p>${member.userName}님 환영합니다.</p>
+		<p><b>${member.userName}</b>님 환영합니다.</p><br>
 		
-		<a href="member/modify_pass">회원정보 수정</a><br />
-		<a href="member/logout">로그아웃</a>
+		<button type="button" class="button2" onclick="location.href='member/modify_pass'">회원정보 수정</button>			
+		<button type="button" onclick="location.href='member/logout'">로그아웃 </button><br>	
+		
 		<a href="/board/listPageSearch?num=1">게시물 목록</a><br>
 	</c:if>
 </div>

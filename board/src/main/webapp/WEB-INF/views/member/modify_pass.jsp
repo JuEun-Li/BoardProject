@@ -6,7 +6,6 @@
 <title>게시판</title>
 </head>
 <body>
-
 	<form role="form" method="post" autocomplete="off">
 
 		<p>

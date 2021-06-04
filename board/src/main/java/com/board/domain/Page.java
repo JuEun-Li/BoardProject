@@ -31,6 +31,9 @@ public class Page {
 	private boolean prev;
 	private boolean next;
 
+
+	/* public int getNum() { return num; } */
+
 	public void setNum(int num) {
 		this.num = num;
 	}
@@ -40,7 +43,6 @@ public class Page {
 
 		dataCalc(); // 맨 아래 dataCalc 메소드 호출
 	}
-
 	public int getCount() {
 		return count;
 	}
@@ -101,18 +103,41 @@ public class Page {
 	}
 
 	// 검색 타입과 검색어 유지
-	private String searchTypeKeyword;
+	/*
+	 * private String searchTypeKeyword;
+	 *
+	 * public void setSearchTypeKeyword(String searchType, String keyword) {
+	 *
+	 * if (searchType.equals("") || keyword.equals("")) { searchTypeKeyword = ""; }
+	 * else { searchTypeKeyword = "&searchType=" + searchType + "&keyword=" +
+	 * keyword; } }
+	 */
 
-	public void setSearchTypeKeyword(String searchType, String keyword) {
-
-		if (searchType.equals("") || keyword.equals("")) {
-			searchTypeKeyword = "";
-		} else {
-			searchTypeKeyword = "&searchType=" + searchType + "&keyword=" + keyword;
+	public String getSearchTypeKeyword() {
+		if(searchType.equals("") || keyword.equals("")) {
+			return "";
+		}
+		else {
+			return "&searchType=" + searchType + "&keyword=" + keyword;
 		}
 	}
 
-	public String getSearchTypeKeyword() {
-		return searchTypeKeyword;
+	private String searchType;
+	private String keyword;
+
+	public String getSearchType() {
+		return searchType;
+	}
+
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 }
