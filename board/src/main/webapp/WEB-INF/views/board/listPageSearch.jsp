@@ -188,7 +188,7 @@ h2 {
 					
 					<!-- 아래 a태그 클릭시 상세 조회 -->
 					<td>
-						<a href="/board/view?bno=${list.rowno}&
+						<a href="/board/view?bno=${list.bno}&
 											searchType=${page.searchType}&
 											keyword=${page.keyword}">${list.title}</a>
 					</td>
