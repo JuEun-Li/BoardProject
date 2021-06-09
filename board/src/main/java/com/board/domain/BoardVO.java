@@ -7,12 +7,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class BoardVO {
 	private int bno;
 	private int rowno;
-	public int getRowno() {
-		return rowno;
-	}
-	public void setRowno(int rowno) {
-		this.rowno = rowno;
-	}
 	private String title;
 	private String content;
 	private String writer;
@@ -22,6 +16,12 @@ public class BoardVO {
 	private String fileName;
 	private MultipartFile uploadFile;
 
+	public int getRowno() {
+		return rowno;
+	}
+	public void setRowno(int rowno) {
+		this.rowno = rowno;
+	}
 	public int getBno() {
 		return bno;
 	}
@@ -35,7 +35,7 @@ public class BoardVO {
 		this.title = title;
 	}
 	public String getContent() {
-		return content.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "");
+		return content;
 	}
 	public void setContent(String content) {
 		this.content = content;

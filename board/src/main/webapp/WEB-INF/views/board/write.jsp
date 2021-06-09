@@ -7,12 +7,9 @@
 	.write-box {
 		text-align: center;
 		vertical-align: middle;
-		border: 5px solid azure;
-		box-shadow: 10px 10px 10px azure;
-	/* 	left: 25%; */
-		padding: 3% 2% 3% 2%;
+		border: 5px solid aliceblue;
+		padding: 1% 5% 3% 5%;
 		margin-bottom: 5%;
-		background-color: aliceblue;
 	}
 	li {
 		list-style: none;
@@ -21,62 +18,88 @@
 	}
 	input, textarea {
 		display: inline-block;
-		margin-left: auto;
-		margin-right: auto;
-		/* left: 25%; */
 		border: none;
-    	/* background-color: aliceblue; */
     	min-height: 50px;
-    	box-shadow: 5px 5px 8px #f1f1f1;
+    	box-shadow: 3px 2px 5px #afadad;
     	border-radius: 3%;
+    	
 	}
-	h1 {
-		padding: 3% 0 3% 10%;
-		color: navy;
+	h2 {
+		padding: 3% 0% 0% 15%;
+		/* color: rgb(171 156 216); */
+		color: lightblue;
 	}
-	label {
-		margin: 3%;
-		font-size: 1.3vw;
+	div {
+		margin: 3% 1% 1% 2%;
+		font-size: 1.1vw;
+		text-align: center;
 	}
 </style>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link href="<c:url value="/resources/static/common.css"/>" rel='stylesheet' />
+<!-- jquery 관련 태그들 -->	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <title>게시물 작성</title>
+<script src="/resources/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 	<%-- <div id="nav">
 	 <%@ include file="../include/nav.jsp" %>
 	</div> --%>
 	
-	<h1><strong>게시물 작성</strong></h1>
+	<h2><strong>게시물 작성</strong></h2>
+	<br><hr class=" col-lg-9">
 	
 	<c:if test="${msg == null }">
 	<form action="write" method="post" enctype="multipart/form-data">
 		<!-- input 과 textarea의 이름 속성의 값이 BoardVO와 일치해야한다. -->
+		
 		<div class="write-box container">
-			<label>제목</label><br>
-			
-			<!-- form-control 클래스 값 넣어주면 됨. -->
-			<input type="text" name="title" class=" col-lg-6 col-md-6"/><br />
+			<%-- <div class=" col-lg-9">제목
+				<!-- form-control 클래스 값 넣어주면 됨. -->
+				<input type="text" name="title" class=" col-lg-9"/>
+			</div>
 			
 			<!-- 여기서 readonly는 읽기 전용(수정 불가) -->
-			<label>작성자</label><br>
-			
-			<input type="text" name="writer" 
-			value="${member.userName}" readonly="readonly"
-			class=" col-lg-6 col-md-6"/><br />
-			
-			<label>내용</label><br>
-			<textarea cols="100" rows="10" name="content" class=" col-lg-8 col-md-8"></textarea><br />
- 			
+			<div class=" col-lg-9">작성자		
+				<input type="text" name="writer" 
+				value="${member.userName}" readonly="readonly" class=" col-lg-9"/>
+			</div><br /> --%>
+			<table class="col-lg-9">
+				<tr>
+					<td class="col-lg-2"><div>제목</div></td>
+					<td><input type="text" name="title" class="col-lg-12" style="margin: 3% 0% 3% 0%;"/></td>
+				</tr>
+				<tr>
+					<td><div>작성자</div></td>
+					<td><input type="text" name="writer" 
+						value="${member.userName}" readonly="readonly"  class="col-lg-12" style="margin-bottom: 2%;"/></td>
+				</tr>
+			</table>
+		
+			<br>
+			<textarea cols="80" rows="30" name="content" class=" col-lg-7" id = "content"></textarea><br />
+ 			<script>
+				 var ckeditor_config = {
+				   resize_enaleb : false,
+				   enterMode : CKEDITOR.ENTER_BR,
+				   shiftEnterMode : CKEDITOR.ENTER_P,
+				   filebrowserUploadUrl : "/admin/goods/ckUpload"
+				 };
+				 
+				 CKEDITOR.replace("content", ckeditor_config);
+			</script>
+			            
 	 		<label><strong>업로드</strong></label>
 			<input type="file" name="uploadFile" style="background-color: white;"/><br />
 		    			
 			<button type="submit" class="btn btn-default"
-			 style="background-color: skyblue; color: white; font-size: 1.5vw;  margin-top: 5%;">
-			 작성</button>
+			 style="background-color: skyblue; color: white; font-size: 1.3vw;  margin-top: 5%;">
+			 작성</button><br>
+			 <a href="/board/listPageSearch?num=1" style="float:right;">취소</a>
 		</div>
 	</form>
 	</c:if>
@@ -86,7 +109,7 @@
 		
 		<li>
 			<button type="button" class="btn btn-default" style="background-color: rgb(235, 233, 250);" >
-				<a href="/board/listPageSearch?num=1">글 목록</a>
+				<a href="/board/listPageSearch?num=1">취소</a>
 			</button>
 		</li>
 	</c:if>

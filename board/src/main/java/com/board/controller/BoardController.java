@@ -1,10 +1,17 @@
 package com.board.controller;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.UUID;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FilenameUtils;
@@ -29,7 +36,8 @@ import com.board.service.BoardService;
 @Controller
 @RequestMapping("/board/*")
 public class BoardController {
-
+	@Resource(name="uploadPath")
+	  private String uploadPath;
 
 	  private static final Logger logger =
 	  LoggerFactory.getLogger(BoardController.class);
@@ -65,7 +73,6 @@ public class BoardController {
 		if(loginInfo == null) {
 			model.addAttribute("msg", false);
 		}
-
 	}
 
 	// 게시물 작성
@@ -85,17 +92,26 @@ public class BoardController {
 		vo.setFileName(fileName);
 		service.write(vo);
 
+		System.out.println("write - getfilename=" + vo.getFileName());
+		System.out.println("write - getuploadfilename=" +vo.getUploadFile());
+		System.out.println("write - getoriginal filename=" +uploadFile.getOriginalFilename());
+
 		return "redirect:/board/listPageSearch?num=1";
 	}
 
 	// 게시물 조회
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public void getView(@RequestParam("bno") int bno,
-			@ModelAttribute("page") Page page, Model model) throws Exception {
-		BoardVO vo = service.view(bno);
+			@ModelAttribute("page") Page page, Model model, BoardVO vo) throws Exception {
+
+		vo = service.view(bno);
 
 		model.addAttribute("view", vo);
 		model.addAttribute("page", page);
+
+
+		System.out.println("view - getfilename=" + vo.getFileName());
+		System.out.println("view - getupload=" + vo.getUploadFile());
 	}
 
 	// 게시물 수정 get
@@ -184,6 +200,53 @@ public class BoardController {
 
 //			model.addAttribute("searchType", searchType);
 //			model.addAttribute("keyword", keyword);
+		}
+
+		// 파일 업로드
+		@RequestMapping(value = "/goods/ckUpload", method = RequestMethod.POST)
+		public void postCKEditorImgUpload(HttpServletRequest req, HttpServletResponse res, @RequestParam MultipartFile upload) throws Exception {
+		 logger.info("post CKEditor img upload");
+
+		 // 랜덤 문자 생성
+		 UUID uid = UUID.randomUUID();
+
+		 OutputStream out = null;
+		 PrintWriter printWriter = null;
+
+		 // 인코딩
+		 res.setCharacterEncoding("utf-8");
+		 res.setContentType("text/html;charset=utf-8");
+
+		 try {
+
+		  String fileName = upload.getOriginalFilename(); // 파일 이름 가져오기
+		  byte[] bytes = upload.getBytes();
+
+		  // 업로드 경로
+		  String ckUploadPath = uploadPath + File.separator + "ckUpload" + File.separator + uid + "_" + fileName;
+
+		  out = new FileOutputStream(new File(ckUploadPath));
+		  out.write(bytes);
+		  out.flush(); // out에 저장된 데이터를 전송하고 초기화
+
+		  String callback = req.getParameter("CKEditorFuncNum");
+		  printWriter = res.getWriter();
+		  String fileUrl = "/ckUpload/" + uid + "_" + fileName; // 작성화면
+
+		  // 업로드시 메시지 출력
+		  printWriter.println("{\"filename\" : \""+fileName+"\", \"uploaded\" : 1, \"url\":\""+fileUrl+"\"}");
+
+		  printWriter.flush();
+
+		 } catch (IOException e) { e.printStackTrace();
+		 } finally {
+		  try {
+		   if(out != null) { out.close(); }
+		   if(printWriter != null) { printWriter.close(); }
+		  } catch(IOException e) { e.printStackTrace(); }
+		 }
+
+		 return;
 		}
 
 }

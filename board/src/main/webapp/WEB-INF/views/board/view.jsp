@@ -32,7 +32,8 @@
 	 	border: 5px solid rgb(235, 233, 250);
 	 	box-shadow: 5px 5px 5px rgb(235, 233, 250);
 	 	padding: 3%;
-	 	min-height: 500px;
+	 	padding-bottom: 10%;
+	 	margin-top
 	}
 	#moveModify, #moveDelete {
 		border-style: none;
@@ -43,8 +44,22 @@
 		
 		float: right;
 	}
-	form {
-		margin-top: 5%;
+	#list_btn {
+		float: right;
+		padding: 10px;
+		border: 1px solid rgb(164 174 210);
+		background-color: rgb(164 174 210);
+		color: white;
+		border-radius: .25rem;
+		margin-right: 0.5%;
+	}
+	#list_btn:hover {
+	 background-color: rgba(0,0,0,0);
+	 color: rgb(164 174 210);
+	}
+	#title {
+		padding: 3% 0% 0% 15%;
+		color: rgb(171 156 216);
 	}
 
 </style>
@@ -57,6 +72,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <title>게시물 조회</title>
+<script src="/resources/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 	
@@ -67,19 +83,36 @@
 <input type="hidden" id = "SearchType" name="SearchType" value="${page.searchType}" readonly="readonly"/>
 <input type="hidden" id = "keyword" name="keyword" value="${page.keyword}" readonly="readonly"/>
 <!-- 검색어 저장 관련 끝-->
-
-	<div id="list" class="container col-lg-6 col-md-6">
+<h2 id="title"><strong>상세 조회</strong></h2><br><hr>
+	<div id="list" class="container col-lg-7 col-md-9">
 		<!-- 제목 -->
 		<h2 style="text-align: center;">${view.title}</h2><br>
 		
 		<!-- 작성자 -->
-		<label style="float: right;">
+		<div style="float: right;">
 		작성자 : <c:out value="${fn:escapeXml(view.writer)}" escapeXml="false"/>
-		</label>
+		</div>
+		<br />
+			
+		
+		<!-- 에디터 영역 -->
+		<textarea cols="100" rows="30" name="content" class=" col-lg-9" id = "content" readonly="readonly">
+		<!-- 내용 -->		
+			<c:out value="${fn:escapeXml(view.content)}" escapeXml="false"/>
+		<br />
+		</textarea>
 		<br />
 		
-		<!-- 내용 -->		
-		<span style="display:inline-block; min-height: 250px;"><c:out value="${fn:escapeXml(view.content)}" escapeXml="false"/></span><br />
+ 		<script>
+			 var ckeditor_config = {
+			   resize_enaleb : false,
+			   enterMode : CKEDITOR.ENTER_BR,
+			   shiftEnterMode : CKEDITOR.ENTER_P,
+			   filebrowserUploadUrl : "/admin/goods/ckUpload"
+			 };
+			 
+			 CKEDITOR.replace("content", ckeditor_config);
+		</script>
 
 		<!-- 게시물 수정 -->
 		<input type="button" id="moveModify" class="btn_shape btn btn-default" value="게시물 수정">
@@ -88,9 +121,8 @@
 		<input type="button" id="moveDelete" class="btn_shape btn btn-default"  
 			style="background-color: pink;" 
 			value="게시물 삭제">
-			
 		<!-- 목록 -->
-		<button type="button" id="list_btn" class="btn_shape btn btn-default" >목록</button>
+		<div style="margin-left: auto;margin-right: auto;"><button type="button" id="list_btn">목록</button></div>
 			
 			
 		<!-- 문제 부분 -->
@@ -123,7 +155,6 @@
 				+ "num=${1}"
 				+ "&searchType=${page.searchType}&keyword=${page.keyword}";
 	});
-	
 </script>
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

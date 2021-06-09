@@ -66,8 +66,8 @@ h2 {
 .write_btn, .list_btn, .member_modify_btn{
 	float: right;
 	padding: 10px;
-	border: 1px solid rgb(215, 223, 250);
-	background-color: rgb(215, 223, 250);
+	border: 1px solid rgb(200, 196, 226);
+	background-color: rgb(200, 196, 226);
 	/* color: gray; */
 	color: white;
 	border-radius: .25rem;
@@ -81,8 +81,8 @@ h2 {
 
 /* 글 작성 ㅡㄴ */
 .write_btn {
-	border: 1px solid rgb(200, 196, 226);
-	background-color:rgb(200, 196, 226);
+	border: 1px solid rgb(164 174 210); 
+	background-color:rgb(164 174 210);
 }
 .write_btn:hover, .list_btn:hover, .member_modify_btn:hover {
 	 background-color: rgba(0,0,0,0);
@@ -137,6 +137,7 @@ h2 {
 	<select class="form-control" id="testBox">
 		<option>언어 선택</option>
 		<option value="ko">한국어</option>
+		<option value="en">영어</option>
 		<option value="zh">중국어</option>
 	</select>
 	</div>
@@ -161,8 +162,8 @@ h2 {
 		</div>
 		<!-- 검색 영역 끝 -->
 		
-	<span style="float: right; color: rgb(171 156 216); font-size: 1.2vw;">
-		게시물 수: ${count}개
+	<span style="float: right; color: #8a8989; font-size: 1.2vw;">
+		총 ${count}개의 게시물이 있습니다.
 	</span>
 	<table class="table table-hover col-lg-12">
 		<thead>
@@ -269,12 +270,12 @@ h2 {
 	});
 </script>
 </body>
-<script
+<!-- <script
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
 	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
 	crossorigin="anonymous"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
 	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-	crossorigin="anonymous"></script>
+	crossorigin="anonymous"></script> -->
 </html>
