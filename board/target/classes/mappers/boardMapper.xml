@@ -16,7 +16,7 @@
 	<insert id="write" parameterType="com.board.domain.BoardVO">
 		<![CDATA[
 		insert into
-		board.tbl_board(title, content, writer, file_name)
+		board.tbl_board(title, content, writer, fileName)
 		values(#{title}, #{content},
 		#{writer}, #{fileName})
 		]]>
@@ -25,8 +25,8 @@
 	<!-- 게시물 조회 -->
 	<select id="view" parameterType="int"
 		resultType="com.board.domain.BoardVO">
-		SELECT tb.rowno, tb.bno, tb.title, tb.content, tb.writer, tb.regDate, tb.viewCnt, tb.file_name
-			FROM (SELECT bno, title, content,  writer, regDate, viewCnt, file_name, row_number() over() AS rowno
+		SELECT tb.rowno, tb.bno, tb.title, tb.content, tb.writer, tb.regDate, tb.viewCnt, tb.fileName
+			FROM (SELECT bno, title, content,  writer, regDate, viewCnt, fileName, row_number() over() AS rowno
 					FROM board.tbl_board
 					) AS tb
 		where bno = #{bno}
@@ -39,7 +39,7 @@
 		title = #{title},
 		content = #{content},
 		writer = #{writer},
-		file_name = #{fileName}
+		fileName = #{fileName}
 		where bno =
 		#{bno}
 	</update>
@@ -69,8 +69,8 @@
 	<!-- 게시물 목록 + 페이징 + 검색 -->
 	<select id="listPageSearch" parameterType="hashMap"
 		resultType="com.board.domain.BoardVO">
-			SELECT tb.rowno, tb.bno, tb.title, tb.content, tb.writer, tb.regDate, tb.viewCnt, tb.file_name
-			FROM (SELECT bno, title, content,  writer, regDate, viewCnt, file_name, row_number() over(order by bno asc) AS rowno
+			SELECT tb.rowno, tb.bno, tb.title, tb.content, tb.writer, tb.regDate, tb.viewCnt, tb.fileName
+			FROM (SELECT bno, title, content,  writer, regDate, viewCnt, fileName, row_number() over(order by bno asc) AS rowno
 					FROM board.tbl_board
 					) AS tb
 		<!-- 제목 검색 쿼리 -->

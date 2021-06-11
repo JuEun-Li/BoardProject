@@ -32,7 +32,7 @@
 	 	border: 5px solid rgb(235, 233, 250);
 	 	box-shadow: 5px 5px 5px rgb(235, 233, 250);
 	 	padding: 3%;
-	 	padding-bottom: 10%;
+	 	padding-bottom: 5%;
 	 	margin-top
 	}
 	#moveModify, #moveDelete {
@@ -46,7 +46,7 @@
 	}
 	#list_btn {
 		float: right;
-		padding: 10px;
+		padding: 2%;
 		border: 1px solid rgb(164 174 210);
 		background-color: rgb(164 174 210);
 		color: white;
@@ -61,7 +61,10 @@
 		padding: 3% 0% 0% 15%;
 		color: rgb(171 156 216);
 	}
-
+	.inputArea {
+		min-height: 400px;
+		margin-top: 5%;
+	}
 </style>
 <head>
 <meta charset="UTF-8">
@@ -94,25 +97,14 @@
 		</div>
 		<br />
 			
-		
-		<!-- 에디터 영역 -->
-		<textarea cols="100" rows="30" name="content" class=" col-lg-9" id = "content" readonly="readonly">
-		<!-- 내용 -->		
-			<c:out value="${fn:escapeXml(view.content)}" escapeXml="false"/>
-		<br />
-		</textarea>
-		<br />
-		
- 		<script>
-			 var ckeditor_config = {
-			   resize_enaleb : false,
-			   enterMode : CKEDITOR.ENTER_BR,
-			   shiftEnterMode : CKEDITOR.ENTER_P,
-			   filebrowserUploadUrl : "/admin/goods/ckUpload"
-			 };
-			 
-			 CKEDITOR.replace("content", ckeditor_config);
-		</script>
+			<!-- 내용 출력 - 스크립트 막기 -->	
+			<div class="inputArea">
+				<div class="content">
+				<%-- <c:out value="${view.content}" escapeXml="false"/> --%>
+				<%--  <c:out value='${view.content.replaceAll("\\\<.*?\\\>","")}' escapeXml="false"/> --%>
+				 ${view.content}
+				</div>
+			</div>
 
 		<!-- 게시물 수정 -->
 		<input type="button" id="moveModify" class="btn_shape btn btn-default" value="게시물 수정">
@@ -122,13 +114,12 @@
 			style="background-color: pink;" 
 			value="게시물 삭제">
 		<!-- 목록 -->
-		<div style="margin-left: auto;margin-right: auto;"><button type="button" id="list_btn">목록</button></div>
+		<div><button type="button" id="list_btn">목록</button></div>
 			
 			
 		<!-- 문제 부분 -->
 	    <%--  <c:if test="${board.fileName ne null}"> --%>
-				<span>첨부파일${view.fileName}</span>
-				<div><a href="fileDownload.do?fileName=${view.fileName}">${view.fileName}</a></div>
+				<div>첨부 파일: <a href="/fileDownload.do?fileName=${view.fileName}">${view.fileName}</a></div><br>
 		<%--  </c:if> --%>
 		
 	</div>

@@ -1,5 +1,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%>
+<%@ page import="java.io.*"%>
+<%@ page import="java.net.*"%>
+<%
+	//파일 기본경로
+	String defaultPath = request.getSession().getServletContext().getRealPath("/");
+	//파일 기본경로, 상세경로
+	String filePath = defaultPath + "ckEimg" + File.separator;
+%>
 
 <!DOCTYPE html>
 <html>
@@ -31,7 +40,7 @@
 	}
 	div {
 		margin: 3% 1% 1% 2%;
-		font-size: 1.1vw;
+		font-size: 1.0vw;
 		text-align: center;
 	}
 </style>
@@ -70,35 +79,43 @@
 			</div><br /> --%>
 			<table class="col-lg-9">
 				<tr>
-					<td class="col-lg-2"><div>제목</div></td>
+					<td class="col-lg-2 col-md-2 col-sm-2"><div>제목</div></td>
 					<td><input type="text" name="title" class="col-lg-12" style="margin: 3% 0% 3% 0%;"/></td>
 				</tr>
 				<tr>
 					<td><div>작성자</div></td>
 					<td><input type="text" name="writer" 
-						value="${member.userName}" readonly="readonly"  class="col-lg-12" style="margin-bottom: 2%;"/></td>
+						value="${member.userName}" readonly="readonly"  class="col-lg-12 col-md-12 col-sm-12" style="margin-bottom: 2%;"/></td>
 				</tr>
 			</table>
 		
 			<br>
 			<textarea cols="80" rows="30" name="content" class=" col-lg-7" id = "content"></textarea><br />
- 			<script>
-				 var ckeditor_config = {
-				   resize_enaleb : false,
-				   enterMode : CKEDITOR.ENTER_BR,
-				   shiftEnterMode : CKEDITOR.ENTER_P,
-				   filebrowserUploadUrl : "/admin/goods/ckUpload"
-				 };
-				 
-				 CKEDITOR.replace("content", ckeditor_config);
+			
+			<script>
+				//CKEDITOR.replace("description"); //태그의 id
+				//이미지 업로드를 할 경우
+				CKEDITOR.replace("content",{
+				
+				//CKEDITOR.replace와 id("description")를 잘 적어주면 그 태그가 smart editor 스타일로 바뀌게 된다. 
+					width:'100%',
+ 		            height:'400px',
+				    filebrowserUploadUrl : "${path}/imageUpload.do",
+				    allowedContent: true
+				
+				//파일을 업로드 해야하기 때문에 filebrowserUploadUrl을 사용하고, 서버쪽에 코드를 완성해주어야 한다.
+				
+				});
 			</script>
 			            
+			<!-- 파일 업로드 부분 -->
 	 		<label><strong>업로드</strong></label>
 			<input type="file" name="uploadFile" style="background-color: white;"/><br />
 		    			
 			<button type="submit" class="btn btn-default"
-			 style="background-color: skyblue; color: white; font-size: 1.3vw;  margin-top: 5%;">
-			 작성</button><br>
+			 style="background-color: skyblue; color: white; font-size: 1.0vw;  margin-top: 5%;">
+			 작성
+			 </button><br>
 			 <a href="/board/listPageSearch?num=1" style="float:right;">취소</a>
 		</div>
 	</form>
@@ -115,7 +132,6 @@
 	</c:if>
 	
 </body>
-
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

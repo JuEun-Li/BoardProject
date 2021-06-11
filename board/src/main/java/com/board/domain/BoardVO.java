@@ -35,7 +35,7 @@ public class BoardVO {
 		this.title = title;
 	}
 	public String getContent() {
-		return content;
+		return content.replace("<Script>", "").replace("<script>", "");
 	}
 	public void setContent(String content) {
 		this.content = content;

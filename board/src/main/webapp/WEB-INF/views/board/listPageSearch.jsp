@@ -162,7 +162,7 @@ h2 {
 		</div>
 		<!-- 검색 영역 끝 -->
 		
-	<span style="float: right; color: #8a8989; font-size: 1.2vw;">
+	<span style="float: right; color: #8a8989; font-size: 1.0vw;">
 		총 ${count}개의 게시물이 있습니다.
 	</span>
 	<table class="table table-hover col-lg-12">
@@ -191,7 +191,12 @@ h2 {
 					<td>
 						<a href="/board/view?bno=${list.bno}&
 											searchType=${page.searchType}&
-											keyword=${page.keyword}">${list.title}</a>
+											keyword=${page.keyword}">${list.title} </a>
+											
+											<!-- 첨부파일이 있는 게시물은 아이콘 표시 처리 -->
+											<c:if test="${list.fileName ne null}">
+												<i class="fas fa-paperclip" style="color: darkgray;"></i>
+											</c:if>
 					</td>
 					
 					<td><fmt:formatDate value="${list.regDate}" pattern="yyyy-MM-dd" /></td>
@@ -207,7 +212,7 @@ h2 {
 		<!-- 페이징 영역 -->
 		<div style="text-align: center; font-size: 1.5vw; color: rgb(171 156 216);">
 			<c:if test="${page.prev}">
-				<span>[ <a href="/board/listPageSearch?num=${page.startPageNum - 1}${page.searchTypeKeyword}">이전</a> ]</span>
+				<span style="font-size: 1.1vw; color: gray; vertical-align: center;">[ <a href="/board/listPageSearch?num=${page.startPageNum - 1}${page.searchTypeKeyword}">이전</a> ]</span>
 			</c:if>
 	
 			<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
@@ -226,7 +231,9 @@ h2 {
 			</c:forEach>
 	
 			<c:if test="${page.next}">
-				 <span>[ <a href="/board/listPageSearch?num=${page.endPageNum + 1}${page.searchTypeKeyword}">다음</a> ]</span>
+				 <span style="font-size: 1.1vw; color: gray; vertical-align: center;">
+				 	[<a href="/board/listPageSearch?num=${page.endPageNum + 1}${page.searchTypeKeyword}">다음</a>]
+				 </span>
 			</c:if>
 		</div>
 		<!-- 페이징 영역 끝 -->

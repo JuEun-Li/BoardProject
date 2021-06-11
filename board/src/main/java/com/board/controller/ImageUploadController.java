@@ -43,7 +43,7 @@ public class ImageUploadController {
         byte[] bytes = upload.getBytes();
 
         // 이미지를 업로드할 디렉토리(배포 디렉토리로 설정)
-        String uploadPath = "D:\\work\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\spring02\\WEB-INF\\views\\images\\";
+        String uploadPath = "C:\\sts-file\\";
 
         OutputStream out = new FileOutputStream(new File(uploadPath + fileName));
 
@@ -57,7 +57,7 @@ public class ImageUploadController {
 
         // 서버=>클라이언트로 텍스트 전송(자바스크립트 실행)
         PrintWriter printWriter = response.getWriter();
-        String fileUrl = request.getContextPath() + "/images/" + fileName;
+        String fileUrl = request.getContextPath() + "/sts-file/" + fileName;
         printWriter.println("<script>window.parent.CKEDITOR.tools.callFunction(" + callback + ",'" + fileUrl
                 + "','이미지가 업로드되었습니다.')" + "</script>");
         printWriter.flush();
