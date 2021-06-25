@@ -122,7 +122,8 @@ h2 {
 <body class="container">
 		<c:if test="${member !=null }">			
 			<button type="button" class="member_modify_btn" onclick="location.href='/member/modify_pass'">회원정보 수정</button>		
-			<button type="button" class="btn default" onclick="location.href='/member/logout'">로그아웃</button>		
+			<button type="button" class="btn default" onclick="location.href='/member/logout'">로그아웃</button>
+			<a href="/member/withdrawal">회원탈퇴</a>		
 		</c:if>
 		
 		<c:if test="${member == null }">			
@@ -133,7 +134,7 @@ h2 {
 		</c:if>
 		
 		<!-- 언어 선택 영역 -->
-	<div class="col-lg-2 col-md-3" style="float: right;">
+	<div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" style="float: right;">
 	<select class="form-control" id="testBox">
 		<option>언어 선택</option>
 		<option value="ko">한국어</option>
@@ -148,7 +149,7 @@ h2 {
 	
 		<!-- 검색 영역 -->
 		<div style="display: inline;">
-			 <select name="searchType" class="con col-lg-2">
+			 <select name="searchType" class="con col-lg-2 col-md-3 col-sm-4 col-xs-3">
 			 	<!-- test 내부에 조건이 들어감, 이 조건이 참일 경우 selected를 출력, 거짓인 경우 아무 것도 출력하지 않음 -->
 			     <option value="title" <c:if test="${page.searchType eq 'title'}">selected</c:if>>제목</option>
 			     <option value="content" <c:if test="${page.searchType eq 'content'}">selected</c:if>>내용</option>
@@ -156,7 +157,7 @@ h2 {
 			     <option value="writer" <c:if test="${page.searchType eq 'writer'}">selected</c:if>>작성자</option>
 			 </select>
 	 	
-			 <input type="text" name="keyword" value="${page.keyword}" class="con col-lg-3"/>
+			 <input type="text" name="keyword" value="${page.keyword}" class="con col-lg-3 col-md-3 col-sm-4 col-xs-3"/>
 			 
 			 <button type="button" id="searchBtn" class="btn btn-default"><i class="fas fa-search"></i></button>
 		</div>
@@ -277,12 +278,4 @@ h2 {
 	});
 </script>
 </body>
-<!-- <script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-	crossorigin="anonymous"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-	crossorigin="anonymous"></script> -->
 </html>

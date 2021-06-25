@@ -19,11 +19,33 @@
 		and userPass = #{userPass}
 	</select>
 
+	<!-- 로그인 - 암호화 적용 -->
+	<select id="loginBcrypt" resultType="com.board.domain.MemberVO">
+		select
+		userId, userName, userPass
+		from
+		board.myMember
+		where userId = #{userId}
+	</select>
+
 	<!-- 회원정보 수정 -->
 	<update id="modify_pass">
 		update board.myMember
 		set
 		userPass = #{userPass}
-		where userName = #{userName}
+		where
+		userName = #{userName}
 	</update>
+
+	<!-- 회원 탈퇴 -->
+	<delete id="withdrawal">
+		delete from board.myMember
+		    where userName = #{userName}
+		        and userId = #{userId}
+	</delete>
+
+	<!-- 아이디 중복검사 -->
+	<select id="idCheck" resultType="int">
+		select count(userId) from board.myMember where userId = #{userId}
+	</select>
 </mapper>

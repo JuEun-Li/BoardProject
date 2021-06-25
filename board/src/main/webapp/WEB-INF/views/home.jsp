@@ -118,6 +118,7 @@
 
 		</form>
 			<p>
+				<!-- <button type="button" class="button3" onclick="location.href='/board/listPageSearch?num=1'">목록</button> -->	
 				<a href="/board/listPageSearch?num=1">게시물 목록</a><br>
 			</p>
 	</c:if>
@@ -134,6 +135,7 @@
 		<button type="button" onclick="location.href='member/logout'">로그아웃 </button><br>	
 		
 		<a href="/board/listPageSearch?num=1">게시물 목록</a><br>
+		<!-- <button type="button" class="button3" onclick="location.href='/board/listPageSearch?num=1'">목록</button> -->	
 	</c:if>
 </div>
 </body>

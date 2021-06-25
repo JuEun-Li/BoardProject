@@ -70,7 +70,7 @@
 	<select id="listPageSearch" parameterType="hashMap"
 		resultType="com.board.domain.BoardVO">
 			SELECT tb.rowno, tb.bno, tb.title, tb.content, tb.writer, tb.regDate, tb.viewCnt, tb.fileName
-			FROM (SELECT bno, title, content,  writer, regDate, viewCnt, fileName, row_number() over(order by bno asc) AS rowno
+			FROM (SELECT bno, title, content, writer, regDate, viewCnt, fileName, row_number() over(order by bno asc) AS rowno
 					FROM board.tbl_board
 					) AS tb
 		<!-- 제목 검색 쿼리 -->

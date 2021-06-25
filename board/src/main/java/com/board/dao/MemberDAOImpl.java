@@ -24,12 +24,25 @@ public class MemberDAOImpl implements MemberDAO{
 	//로그인
 	@Override
 	public MemberVO login(MemberVO vo) throws Exception {
-		return sql.selectOne(namespace + ".login", vo);
+		return sql.selectOne(namespace + ".loginBcrypt", vo);
 	}
 
 	// 회원정보 수정
 	@Override
 	public void modify_pass(MemberVO vo) throws Exception {
 		sql.update(namespace + ".modify_pass", vo);
+	}
+
+	// 아이디 중복 체크
+	@Override
+	public int idCheck(MemberVO vo) throws Exception {
+		int result = sql.selectOne(namespace + ".idCheck", vo);
+		return result;
+	}
+
+	// 회원 탈퇴
+	@Override
+	public void withdrawal(MemberVO vo) throws Exception {
+		sql.delete(namespace + ".withdrawal", vo);
 	}
 }

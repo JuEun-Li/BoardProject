@@ -28,7 +28,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.board.domain.BoardVO;
 import com.board.domain.Page;
+import com.board.domain.ReplyVO;
 import com.board.service.BoardService;
+import com.board.service.ReplyService;
 
 @Controller
 @RequestMapping("/board/*")
@@ -42,14 +44,14 @@ public class BoardController {
 
 	  @Autowired private SessionLocaleResolver localeResolver;
 
-
 	  @Autowired private MessageSource messageSource;
-
-
-	// message-context.xml 에 선언되어있는 bean id 값
+	  // message-context.xml 에 선언되어있는 bean id 값
 
 	@Inject
 	BoardService service;
+
+	@Inject
+	ReplyService replyService;
 
 	// 게시물 목록
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -104,7 +106,7 @@ public class BoardController {
 		return "redirect:/board/listPageSearch?num=1";
 	}
 
-	// 게시물 조회
+	// 게시물 조회 - 댓글 조회도 같이
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public void getView(@RequestParam("bno") int bno,
 			@ModelAttribute("page") Page page, Model model, BoardVO vo) throws Exception {
@@ -115,8 +117,13 @@ public class BoardController {
 		model.addAttribute("page", page);
 
 
-		System.out.println("view - getfilename=" + vo.getFileName());
-		System.out.println("view - getupload=" + vo.getUploadFile());
+		System.out.println("view - getfilename=" + vo.getFileName()); // 첨부파일
+		System.out.println("view - getupload=" + vo.getUploadFile()); // 이미지 업로드 파일
+
+		// 댓글 조회
+		List<ReplyVO> reply = null;
+		reply = replyService.list(bno);
+		model.addAttribute("reply", reply);
 	}
 
 	// 게시물 수정 get
@@ -153,13 +160,11 @@ public class BoardController {
 					}
 		}
 
-
 		vo.setFileName(fileName);
 		service.modify(vo);
 
 		rttr.addAttribute("searchType", page.getSearchType());
 		rttr.addAttribute("keyword", page.getKeyword());
-
 
 		return "redirect:/board/view?bno=" + vo.getBno();
 	}

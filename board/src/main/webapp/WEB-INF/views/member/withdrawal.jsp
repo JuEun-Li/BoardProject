@@ -10,7 +10,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <html>
 <head>
- <title>회원가입</title> 
+ <title>회원탈퇴</title> 
 </head>
 <style>
 .main-box {
@@ -91,7 +91,7 @@
 </style>
 <body>
 <div class="container col-lg-6 col-md-8 main-box">
-<h1>회원 가입</h1>
+<h1>회원 탈퇴</h1>
 <hr>
 <form role="form" method="post" autocomplete="off">	 
 	 <table>
@@ -105,11 +105,7 @@
 	 		<td><input type="text" id="userId" name="userId" class="con1"/>
 	 		</td>
 	 	</tr>
-	 	<tr>
-	 		<td>
-	 			<button type="button" id="idCheck" onclick="fn_idOverlap();">중복확인</button>
-	 		</td>
-	 	</tr>
+
 	 	
 	 	<tr>
 			 <th>
@@ -123,46 +119,20 @@
 	 	
 	 	<tr>
 			 <th>
-			 	<label for="userName">닉네임</label>
+			 	<button type="submit">회원 탈퇴</button>
 			 </th>
 		 </tr>
-		 
-	 	<tr>
-	 		<td><input type="text" id="userName" name="userName" class="con"/></td>
-	 	</tr>
 	 </table>
 	 
-	 <p>
-	   	  <button type="submit" id="submit" disabled="disabled">가입</button>  
-	 </p>
 	 <p>
 	  	  <a href="/">처음으로</a>
 	 </p>
 </form>
+	<c:if test="${msg == false }">
+	 <p>
+	 입력한 비밀번호가 잘못 되었습니다.
+	 </p>
+	</c:if>
 </div>
-<script>
-//아이디 중복검사
-
-function fn_idOverlap() {
-	$.ajax({
-		url : "/member/idCheck",
-		type : "post",
-		dataType : "json",
-		data : { "userId" : $("#userId").val()},
-		error:function(request,status,error){
-	        alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-	       },
-		success : function(data) {
-			if(data == 1) {
-				alert("중복된 아이디 입니다.");
-				$("#submit").attr("disabled", "disabled");
-			} else if(data == 0) {
-				alert("사용가능한 아이디 입니다.");
-				$("#submit").removeAttr("disabled");
-			}
-		}
-	})
-}
-</script>
 </body>
 </html>
