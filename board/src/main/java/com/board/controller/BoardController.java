@@ -42,7 +42,7 @@ public class BoardController {
 	  LoggerFactory.getLogger(BoardController.class);
 
 
-	  @Autowired private SessionLocaleResolver localeResolver;
+	  @Autowired private SessionLocaleResolver localeResolver; // jpa 가 기본 메소드를 만들어서 멤버 변수 대입. 사용하기만 하면 된다.
 
 	  @Autowired private MessageSource messageSource;
 	  // message-context.xml 에 선언되어있는 bean id 값

@@ -63,7 +63,7 @@ h2 {
 }
 
 /* 글 작성, 목록, 회원 정보 수정 버튼 */
-.write_btn, .list_btn, .member_modify_btn{
+.write_btn, .list_btn{
 	float: right;
 	padding: 10px;
 	border: 1px solid rgb(200, 196, 226);
@@ -73,10 +73,13 @@ h2 {
 	border-radius: .25rem;
 	margin-right: 0.5%;
 }
-.member_modify_btn {
+/*회원정보 수정, 로그인*/
+.member_modify_btn, .login_btn {
 	float: left;
-	background-color: rgb(171 156 216);	
-	border: rgb(171 156 216);
+	background-color: rgb(200, 196, 226);
+	border:  rgb(200, 196, 226);
+	color: white;
+	border-radius: .25rem;
 }
 
 /* 글 작성 ㅡㄴ */
@@ -84,7 +87,7 @@ h2 {
 	border: 1px solid rgb(164 174 210); 
 	background-color:rgb(164 174 210);
 }
-.write_btn:hover, .list_btn:hover, .member_modify_btn:hover {
+.write_btn:hover, .list_btn:hover, .member_modify_btn:hover{
 	 background-color: rgba(0,0,0,0);
 	 color: rgb(171 156 216);
 	 cursor: pointer;
@@ -94,7 +97,7 @@ h2 {
 .con {
     width: 100%;
     height: calc(1.5em + .75rem + 2px);
-    padding: .375rem .75rem;
+    padding: .375rem .75rem; 
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
@@ -105,6 +108,49 @@ h2 {
     border-radius: .25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
+
+/* --------미디어 서식-------- */
+@media (max-width: 767px) {
+  /* 스마트폰 사이즈 */
+  .table td, .table th {
+  	height: 40px;
+  	font-size: 1.9vw;
+  }
+  .write_btn, .list_btn, .member_modify_btn {
+  	min-width: 90px;
+  	height: 40px;
+  	font-size: 1.9vw;
+  }
+  .main {
+	padding: 1% 1% 0% 1%;
+  }
+
+  
+ }
+  
+@media all and (min-width: 768px ) and (max-width: 991px) {
+  /* 태블릿 */
+  .table td, .table th {
+  	height: 60px;
+  	font-size: 1.7vw;
+  }
+  .write_btn, .list_btn, .member_modify_btn {
+  	min-width: 130px;
+  	height: 60px;
+  	font-size: 1.9vw;
+  }
+  .main {
+	padding: 1% 5% 0% 5%;
+  }
+
+}
+@media (min-width: 992px) {
+  /* 컴퓨터 */
+	 .main {
+		padding: 1% 15% 0% 15%;
+	}
+
+}
 </style>
 
 <head>
@@ -113,13 +159,15 @@ h2 {
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- jquery 관련 태그들 -->	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <title>게시물 목록</title>
 </head>
-<body class="container">
+<body class="container-fluid">
+<div class="main">
 		<c:if test="${member !=null }">			
 			<button type="button" class="member_modify_btn" onclick="location.href='/member/modify_pass'">회원정보 수정</button>		
 			<button type="button" class="btn default" onclick="location.href='/member/logout'">로그아웃</button>
@@ -127,14 +175,14 @@ h2 {
 		</c:if>
 		
 		<c:if test="${member == null }">			
-			<button type="button" class="btn btn-default">
+			<button type="button" class="login_btn" onclick="location.href='/'">
 				<!-- 로그인 페이지 -->
-				<a href="/">로그인</a>
+				로그인
 			</button>
 		</c:if>
 		
 		<!-- 언어 선택 영역 -->
-	<div class="col-lg-2 col-md-3 col-sm-4 col-xs-4" style="float: right;">
+	<div class="col-lg-2 col-md-4 col-sm-5 col-xs-5" style="float: right;">
 	<select class="form-control" id="testBox">
 		<option>언어 선택</option>
 		<option value="ko">한국어</option>
@@ -252,7 +300,7 @@ h2 {
 				</button>	
 		
 	</div>
-	
+</div>
 	<%-- <div id="nav">
 		<%@ include file="../include/nav.jsp"%>
 	</div> --%>

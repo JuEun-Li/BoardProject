@@ -14,9 +14,8 @@
 		display: block;
 		padding: 1%;
 	}
-	h1 {
-		padding: 5% 0 3% 1%;
-		text-align: center;
+	h2 {
+		padding: 2% 0 0% 0%;
 	}
 	/* 수정, 삭제 버튼 */
 	.btn_shape {
@@ -31,7 +30,6 @@
 	#list {
 /* 	 	border: 5px solid rgb(235, 233, 250);
 	 	box-shadow: 5px 5px 5px rgb(235, 233, 250); */
-	 	 padding: 2% 0% 0% 0%;
 	}
 
 	#list_btn {
@@ -112,23 +110,22 @@
 <br><hr>
 
 	<div id="list" class="container col-lg-7 col-md-9 col-sm-9">
-		<!-- 제목 -->
-		<h2 style="text-align: center;"><strong>${view.title}</strong></h2><br>
+			<!-- 제목 -->
+			<h2 style="text-align: center;"><strong>${view.title}</strong></h2><br>
+			
+			<!-- 작성자 -->
+			<div style="float: right;">
+				<i class="fas fa-user-circle fa-2x" style="color: gray;"></i>
+				<strong><c:out value="${fn:escapeXml(view.writer)}" escapeXml="false"/></strong><br>
+				등록일 : <fmt:formatDate value="${view.regDate}" pattern="yyyy-MM-dd" /><br>
+				
+				<!-- 게시물 삭제 -->
+				<input type="button" id="moveDelete" class="btn_shape" value="게시물 삭제 ">  |
+				
+				<!-- 게시물 수정 -->
+				<input type="button" id="moveModify" class="btn_shape" value="게시물 수정">			
+			</div>
 		
-		<!-- 작성자 -->
-		<div style="float: right;">
-			<i class="fas fa-user-circle fa-2x" style="color: gray;"></i>
-			<strong><c:out value="${fn:escapeXml(view.writer)}" escapeXml="false"/></strong><br>
-			등록일 : <fmt:formatDate value="${view.regDate}" pattern="yyyy-MM-dd" /><br>
-			
-			<!-- 게시물 삭제 -->
-			<input type="button" class="btn_shape" value="게시물 삭제 ">  |
-			
-			<!-- 게시물 수정 -->
-			<input type="button" class="btn_shape" value="게시물 수정">			
-		</div>
-		<br />
-			
 		<div style="display: inline-block; background-color: rgb(203 197 220); height: 3px;" class="col-lg-12"></div>
 			<!-- 내용 출력 - 스크립트 막기 -->	
 			<div class="inputArea">
@@ -168,10 +165,10 @@
 			<!-- form 내부의 데이터를 post 형식으로 보내되, /reply/write 경로로 보냄. -->
 		   <form method="post" action="/reply/write" class="container col-lg-7 col-md-9 col-sm-9 reply_write">	    
 		        <p>
-		                     작성자: <input type="text" name="writer">
+		            <input type="text" name="writer" placeholder="작성자">
 		        </p>
 		        <p>
-		            <textarea rows="3" cols="70" name="content"></textarea>
+		            <textarea rows="3" cols="70" name="content" placeholder="댓글을 입력해주세요"></textarea>
 
 		        	<!-- 게시물 고유 번호를 굳이 표시하지 않음, 개발 시 데이터를 다루기 위한 용도 -->
 		        	<input type="hidden" name="bno" value="${view.bno}">
